@@ -33,6 +33,10 @@ class HorizonGalleryApp extends StatelessWidget {
               name: 'Cyber Light',
               data: HorizonThemes.cyberLight(),
             ),
+            WidgetbookTheme(name: 'Alpine', data: HorizonThemes.alpine()),
+            WidgetbookTheme(name: 'Forest', data: HorizonThemes.forest()),
+            WidgetbookTheme(name: 'Aurora', data: HorizonThemes.aurora()),
+            WidgetbookTheme(name: 'Minimal', data: HorizonThemes.minimal()),
           ],
         ),
         InspectorAddon(),
@@ -327,6 +331,63 @@ class HorizonGalleryApp extends StatelessWidget {
                       value: 8.4,
                       decimalPlaces: 1,
                       suffix: ' ft',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        WidgetbookFolder(
+          name: 'Maps',
+          children: [
+            WidgetbookComponent(
+              name: 'ForecastMarker',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Selected',
+                  builder: (context) => const Center(
+                    child: ForecastMarker(
+                      label: 'Jaws',
+                      score: 95,
+                      selected: true,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'WindParticles',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: WindParticles(height: 140),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        WidgetbookFolder(
+          name: 'Outdoor',
+          children: [
+            WidgetbookComponent(
+              name: 'SpotHeader',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => const Padding(
+                    padding: EdgeInsets.all(24),
+                    child: SpotHeader(
+                      name: 'Mavericks',
+                      region: 'Half Moon Bay, CA',
+                      status: StatusPill(
+                        label: 'Caution',
+                        tone: HorizonStatusTone.warning,
+                      ),
+                      trailing: ScoreBadge(score: 88),
                     ),
                   ),
                 ),

@@ -1,3 +1,7 @@
+## 0.3.0
+
+- Phase 3: Alpine/Forest/Aurora/Minimal themes, map overlays, outdoor widgets.
+
 ## 0.2.0
 
 - Phase 2: charts, gauges, navigation scaffolds, and animation library.

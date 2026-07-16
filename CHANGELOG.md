@@ -1,3 +1,11 @@
+## 0.3.0
+
+### Added
+
+- Themes: Alpine, Forest, Aurora, Minimal (light and dark)
+- Maps: ForecastMarker, AnimatedHalo, SelectionRing, HeatMapOverlay, WindParticles
+- Outdoor: ScoreBadge, StatusPill, TrendChip, MetricTile, UnitSelector, SpotHeader, ConditionChip, DayPartStrip
+
 ## 0.2.0
 
 ### Added

@@ -242,6 +242,275 @@ abstract final class HorizonThemes {
     elevation: HorizonElevationTokens.cyber(glow: const Color(0xFF00B8CC)),
   );
 
+  static ThemeData alpine({Brightness brightness = Brightness.light}) {
+    return brightness == Brightness.dark ? alpineDark() : _alpineLight();
+  }
+
+  static ThemeData _alpineLight() => _build(
+    id: 'alpine-light',
+    brightness: Brightness.light,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF3D5A80),
+      onPrimary: Color(0xFFFFFFFF),
+      secondary: Color(0xFF6B8CAE),
+      onSecondary: Color(0xFFFFFFFF),
+      accent: Color(0xFF98C1D9),
+      onAccent: Color(0xFF0F1C24),
+      success: Color(0xFF2A6F5F),
+      onSuccess: Color(0xFFFFFFFF),
+      warning: Color(0xFFB07A2A),
+      onWarning: Color(0xFFFFFFFF),
+      danger: Color(0xFFB5453A),
+      onDanger: Color(0xFFFFFFFF),
+      surface: Color(0xFFF4F7FA),
+      onSurface: Color(0xFF1B242C),
+      background: Color(0xFFE8EEF4),
+      onBackground: Color(0xFF1B242C),
+      border: Color(0xFFB8C5D1),
+      glow: Color(0xFF98C1D9),
+      surfaceVariant: Color(0xFFD7E1EA),
+      onSurfaceVariant: Color(0xFF4A5A68),
+    ),
+    typography: HorizonTypographyTokens.material(
+      color: const Color(0xFF1B242C),
+    ),
+  );
+
+  static ThemeData alpineDark() => _build(
+    id: 'alpine-dark',
+    brightness: Brightness.dark,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF98C1D9),
+      onPrimary: Color(0xFF0F1C24),
+      secondary: Color(0xFF6B8CAE),
+      onSecondary: Color(0xFF0F1C24),
+      accent: Color(0xFFE0FBFC),
+      onAccent: Color(0xFF1B242C),
+      success: Color(0xFF6FBF9A),
+      onSuccess: Color(0xFF003822),
+      warning: Color(0xFFE0B878),
+      onWarning: Color(0xFF3A2800),
+      danger: Color(0xFFE08A80),
+      onDanger: Color(0xFF3F0A08),
+      surface: Color(0xFF1A2430),
+      onSurface: Color(0xFFE8EEF4),
+      background: Color(0xFF0F161E),
+      onBackground: Color(0xFFE8EEF4),
+      border: Color(0xFF3A4A5A),
+      glow: Color(0xFF98C1D9),
+      surfaceVariant: Color(0xFF243040),
+      onSurfaceVariant: Color(0xFFA8B8C8),
+    ),
+    typography: HorizonTypographyTokens.material(
+      color: const Color(0xFFE8EEF4),
+    ),
+  );
+
+  static ThemeData forest({Brightness brightness = Brightness.light}) {
+    return brightness == Brightness.dark ? forestDark() : _forestLight();
+  }
+
+  static ThemeData _forestLight() => _build(
+    id: 'forest-light',
+    brightness: Brightness.light,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF3D5C3A),
+      onPrimary: Color(0xFFF5F7F0),
+      secondary: Color(0xFF6B5A3E),
+      onSecondary: Color(0xFFF5F7F0),
+      accent: Color(0xFF8B9A4A),
+      onAccent: Color(0xFF1A1F12),
+      success: Color(0xFF2F6B3A),
+      onSuccess: Color(0xFFF5F7F0),
+      warning: Color(0xFFA67C2A),
+      onWarning: Color(0xFF1A1208),
+      danger: Color(0xFF8B3A2A),
+      onDanger: Color(0xFFFFF8F6),
+      surface: Color(0xFFF3F0E8),
+      onSurface: Color(0xFF1F2418),
+      background: Color(0xFFE8E4D8),
+      onBackground: Color(0xFF1F2418),
+      border: Color(0xFFC4BBA8),
+      glow: Color(0xFF8B9A4A),
+      surfaceVariant: Color(0xFFDDD6C6),
+      onSurfaceVariant: Color(0xFF4A5240),
+    ),
+    typography: HorizonTypographyTokens.editorial(
+      color: const Color(0xFF1F2418),
+    ),
+  );
+
+  static ThemeData forestDark() => _build(
+    id: 'forest-dark',
+    brightness: Brightness.dark,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF8B9A4A),
+      onPrimary: Color(0xFF1A1F12),
+      secondary: Color(0xFFA89060),
+      onSecondary: Color(0xFF1A1208),
+      accent: Color(0xFFC4B896),
+      onAccent: Color(0xFF1A1208),
+      success: Color(0xFF6FBF7A),
+      onSuccess: Color(0xFF003816),
+      warning: Color(0xFFE0B878),
+      onWarning: Color(0xFF3A2800),
+      danger: Color(0xFFE08A70),
+      onDanger: Color(0xFF3F0A08),
+      surface: Color(0xFF1A2218),
+      onSurface: Color(0xFFE8E4D8),
+      background: Color(0xFF0F140E),
+      onBackground: Color(0xFFE8E4D8),
+      border: Color(0xFF3A4434),
+      glow: Color(0xFF8B9A4A),
+      surfaceVariant: Color(0xFF243020),
+      onSurfaceVariant: Color(0xFFB0B8A0),
+    ),
+    typography: HorizonTypographyTokens.editorial(
+      color: const Color(0xFFE8E4D8),
+    ),
+  );
+
+  static ThemeData aurora({Brightness brightness = Brightness.dark}) {
+    return brightness == Brightness.light ? auroraLight() : auroraDark();
+  }
+
+  static ThemeData auroraDark() => _build(
+    id: 'aurora-dark',
+    brightness: Brightness.dark,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF5EF0B8),
+      onPrimary: Color(0xFF00281C),
+      secondary: Color(0xFF7B6CFF),
+      onSecondary: Color(0xFF120A40),
+      accent: Color(0xFFE0A0FF),
+      onAccent: Color(0xFF2A0040),
+      success: Color(0xFF5EF0B8),
+      onSuccess: Color(0xFF00281C),
+      warning: Color(0xFFFFC14D),
+      onWarning: Color(0xFF2A1A00),
+      danger: Color(0xFFFF6B9A),
+      onDanger: Color(0xFF2A0014),
+      surface: Color(0xFF121528),
+      onSurface: Color(0xFFE8ECFF),
+      background: Color(0xFF080A14),
+      onBackground: Color(0xFFE8ECFF),
+      border: Color(0xFF2A3050),
+      glow: Color(0xFF5EF0B8),
+      surfaceVariant: Color(0xFF1A1E38),
+      onSurfaceVariant: Color(0xFFA8B0D8),
+    ),
+    typography: HorizonTypographyTokens.hud(color: const Color(0xFFE8ECFF)),
+    elevation: HorizonElevationTokens.cyber(glow: const Color(0xFF5EF0B8)),
+  );
+
+  static ThemeData auroraLight() => _build(
+    id: 'aurora-light',
+    brightness: Brightness.light,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF0A7A5C),
+      onPrimary: Color(0xFFFFFFFF),
+      secondary: Color(0xFF4A3DB8),
+      onSecondary: Color(0xFFFFFFFF),
+      accent: Color(0xFF8B40B8),
+      onAccent: Color(0xFFFFFFFF),
+      success: Color(0xFF0A7A5C),
+      onSuccess: Color(0xFFFFFFFF),
+      warning: Color(0xFFB07800),
+      onWarning: Color(0xFFFFFFFF),
+      danger: Color(0xFFC41E5A),
+      onDanger: Color(0xFFFFFFFF),
+      surface: Color(0xFFF2F4FC),
+      onSurface: Color(0xFF141828),
+      background: Color(0xFFE6EAF8),
+      onBackground: Color(0xFF141828),
+      border: Color(0xFFB8C0E0),
+      glow: Color(0xFF3DB88A),
+      surfaceVariant: Color(0xFFD8DCF0),
+      onSurfaceVariant: Color(0xFF3A4060),
+    ),
+    typography: HorizonTypographyTokens.material(
+      color: const Color(0xFF141828),
+    ),
+  );
+
+  static ThemeData minimal({Brightness brightness = Brightness.light}) {
+    return brightness == Brightness.dark ? minimalDark() : _minimalLight();
+  }
+
+  static ThemeData _minimalLight() => _build(
+    id: 'minimal-light',
+    brightness: Brightness.light,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF111111),
+      onPrimary: Color(0xFFFFFFFF),
+      secondary: Color(0xFF555555),
+      onSecondary: Color(0xFFFFFFFF),
+      accent: Color(0xFF222222),
+      onAccent: Color(0xFFFFFFFF),
+      success: Color(0xFF1B6B36),
+      onSuccess: Color(0xFFFFFFFF),
+      warning: Color(0xFF8B5000),
+      onWarning: Color(0xFFFFFFFF),
+      danger: Color(0xFFBA1A1A),
+      onDanger: Color(0xFFFFFFFF),
+      surface: Color(0xFFFFFFFF),
+      onSurface: Color(0xFF111111),
+      background: Color(0xFFFAFAFA),
+      onBackground: Color(0xFF111111),
+      border: Color(0xFFDDDDDD),
+      glow: Color(0xFF888888),
+      surfaceVariant: Color(0xFFF0F0F0),
+      onSurfaceVariant: Color(0xFF555555),
+    ),
+    typography: HorizonTypographyTokens.material(
+      color: const Color(0xFF111111),
+    ),
+    elevation: const HorizonElevationTokens(
+      glassBlur: 8,
+      glassOpacity: 0.9,
+      flat: [],
+      raised: [],
+      floating: [],
+    ),
+  );
+
+  static ThemeData minimalDark() => _build(
+    id: 'minimal-dark',
+    brightness: Brightness.dark,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFFF5F5F5),
+      onPrimary: Color(0xFF111111),
+      secondary: Color(0xFFAAAAAA),
+      onSecondary: Color(0xFF111111),
+      accent: Color(0xFFE0E0E0),
+      onAccent: Color(0xFF111111),
+      success: Color(0xFF86D992),
+      onSuccess: Color(0xFF003919),
+      warning: Color(0xFFFFB95C),
+      onWarning: Color(0xFF432C00),
+      danger: Color(0xFFFFB4AB),
+      onDanger: Color(0xFF690005),
+      surface: Color(0xFF141414),
+      onSurface: Color(0xFFF5F5F5),
+      background: Color(0xFF0A0A0A),
+      onBackground: Color(0xFFF5F5F5),
+      border: Color(0xFF333333),
+      glow: Color(0xFF888888),
+      surfaceVariant: Color(0xFF1E1E1E),
+      onSurfaceVariant: Color(0xFFAAAAAA),
+    ),
+    typography: HorizonTypographyTokens.material(
+      color: const Color(0xFFF5F5F5),
+    ),
+    elevation: const HorizonElevationTokens(
+      glassBlur: 8,
+      glassOpacity: 0.5,
+      flat: [],
+      raised: [],
+      floating: [],
+    ),
+  );
+
   static ThemeData _build({
     required String id,
     required Brightness brightness,

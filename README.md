@@ -33,15 +33,17 @@ MaterialApp(
 );
 ```
 
-## Themes (Phase 1)
+## Themes
 
 | Theme | API |
 |-------|-----|
 | Classic Material | `HorizonThemes.classic()` / `classicDark()` |
 | Luxury Coastal | `HorizonThemes.luxuryCoastal()` / `luxuryCoastalDark()` |
 | Cyber Surf | `HorizonThemes.cyber()` / `cyberDark()` |
-
-Alpine, Forest, Aurora, and Minimal are reserved for later phases.
+| Alpine | `HorizonThemes.alpine()` / `alpineDark()` |
+| Forest | `HorizonThemes.forest()` / `forestDark()` |
+| Aurora | `HorizonThemes.aurora()` / `auroraLight()` |
+| Minimal | `HorizonThemes.minimal()` / `minimalDark()` |
 
 ## Components
 
@@ -55,9 +57,13 @@ Alpine, Forest, Aurora, and Minimal are reserved for later phases.
 - **Navigation:** AppScaffold, ResponsiveScaffold, SplitView, AdaptiveNavigation
 - **Motion:** AnimatedNumber, Pulse, Shimmer, RadarSweep, WaveRipple, FloatingCard, page transitions
 
+### Phase 3
+- **Maps:** ForecastMarker, AnimatedHalo, SelectionRing, HeatMapOverlay, WindParticles
+- **Outdoor:** ScoreBadge, StatusPill, TrendChip, MetricTile, UnitSelector, SpotHeader, ConditionChip, DayPartStrip
+
 ## Examples
 
-**Showcase app** — simple app with theme switcher and every Phase 1 component:
+**Showcase app** — theme switcher with Phases 1–3 components and copyable code:
 
 ```bash
 melos bootstrap
@@ -76,7 +82,7 @@ cd examples/gallery && flutter run -d chrome
 
 1. ~~Tokens, themes, typography, buttons, cards~~
 2. ~~Charts, gauges, navigation, animations~~
-3. Maps and outdoor-specific widgets
+3. ~~Maps and outdoor-specific widgets~~
 4. Docs site and community themes
 
 ## License
