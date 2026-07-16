@@ -88,42 +88,69 @@ class HeroCard extends StatelessWidget {
                       end: Alignment.bottomRight,
                       colors: [tokens.colors.primary, tokens.colors.accent],
                     )
-                  : LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.transparent,
-                        tokens.colors.background.withValues(alpha: 0.75),
-                      ],
-                    ),
+                  : null,
               boxShadow: tokens.elevation.floating,
             ),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding: EdgeInsets.all(tokens.spacing.x5),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: tokens.typography.headline.copyWith(
-                        color: tokens.colors.onPrimary,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: radius,
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.black.withValues(alpha: 0.05),
+                          Colors.black.withValues(alpha: 0.72),
+                        ],
+                        stops: const [0.25, 1],
                       ),
                     ),
-                    if (subtitle != null) ...[
-                      SizedBox(height: tokens.spacing.x1),
-                      Text(
-                        subtitle!,
-                        style: tokens.typography.body.copyWith(
-                          color: tokens.colors.onPrimary.withValues(alpha: 0.9),
-                        ),
-                      ),
-                    ],
-                  ],
+                  ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding: EdgeInsets.all(tokens.spacing.x5),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: tokens.typography.headline.copyWith(
+                            color: Colors.white,
+                            shadows: const [
+                              Shadow(
+                                color: Color(0x99000000),
+                                blurRadius: 8,
+                                offset: Offset(0, 1),
+                              ),
+                            ],
+                          ),
+                        ),
+                        if (subtitle != null) ...[
+                          SizedBox(height: tokens.spacing.x1),
+                          Text(
+                            subtitle!,
+                            style: tokens.typography.body.copyWith(
+                              color: Colors.white.withValues(alpha: 0.92),
+                              shadows: const [
+                                Shadow(
+                                  color: Color(0x99000000),
+                                  blurRadius: 6,
+                                  offset: Offset(0, 1),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

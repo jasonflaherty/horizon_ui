@@ -27,11 +27,8 @@ class HorizonRadarChart extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color stroke = strokeColor ?? context.horizon.colors.primary;
     final Color fill = fillColor ?? stroke.withValues(alpha: 0.25);
-    final Color grid = context.horizon.colors.border.withValues(alpha: 0.5);
-    final TextStyle labelStyle = context.horizon.typography.label.copyWith(
-      color: context.horizon.colors.resolvedOnSurfaceVariant,
-      fontSize: 10,
-    );
+    final Color grid = context.horizon.colors.border.withValues(alpha: 0.7);
+    final TextStyle labelStyle = horizonChartAnnotationStyle(context.horizon);
 
     return Semantics(
       label: semanticLabel ?? 'Radar chart',

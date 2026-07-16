@@ -177,6 +177,23 @@ class HorizonElevationTokens {
     );
   }
 
+  /// No blur, no glow, no shadows — for Mono / ink themes.
+  factory HorizonElevationTokens.flat() {
+    return const HorizonElevationTokens(
+      glassBlur: 0,
+      glassOpacity: 1,
+      refraction: 0,
+      specular: 0,
+      tint: Color(0x00000000),
+      edgeWidth: 1,
+      rimIntensity: 0,
+      imperfectShadowOffset: Offset.zero,
+      flat: [],
+      raised: [],
+      floating: [],
+    );
+  }
+
   HorizonElevationTokens lerp(HorizonElevationTokens other, double t) {
     return HorizonElevationTokens(
       glassBlur: glassBlur + (other.glassBlur - glassBlur) * t,

@@ -1,3 +1,9 @@
+## 0.5.0
+
+- Navigation chrome themes: AppBar, NavigationBar, bottom nav, rail, drawer, popup/menu.
+- Widgets: `HorizonAppBar` (optional glass), `HorizonNavigationBar`, `HorizonPopupMenuButton`.
+- Flat mono theme: `HorizonThemes.mono()` / `monoDark()` (black & white, no radius/shadow/glass).
+
 ## 0.4.1
 
 - Deepen Luxury Coastal and Cyber liquid-glass look: stronger blur/rim lighting,

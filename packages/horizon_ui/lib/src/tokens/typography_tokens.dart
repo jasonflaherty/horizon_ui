@@ -179,10 +179,10 @@ class HorizonTypographyTokens {
       ),
       label: TextStyle(
         fontFamily: fontFamily,
-        fontSize: 10,
+        fontSize: 12,
         fontWeight: FontWeight.w600,
-        height: 1.2,
-        letterSpacing: 1.4,
+        height: 1.25,
+        letterSpacing: 0.35,
         color: c,
       ),
       numeric: TextStyle(

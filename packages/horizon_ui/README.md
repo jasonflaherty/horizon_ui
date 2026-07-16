@@ -53,6 +53,7 @@ MaterialApp(
 | Forest | `HorizonThemes.forest()` / `forestDark()` |
 | Aurora | `HorizonThemes.aurora()` / `auroraLight()` |
 | Minimal | `HorizonThemes.minimal()` / `minimalDark()` |
+| Mono | `HorizonThemes.mono()` / `monoDark()` |
 | Calm | `HorizonThemes.calm()` / `calmLight()` |
 
 Luxury Coastal and Cyber use deep liquid-glass elevation (blur, optical rim,
@@ -89,6 +90,8 @@ against backgrounds; frosted transparency comes from elevation `glassOpacity` on
 - **Maps overlays:** ForecastMarker, HeatMapOverlay, WindParticles, …
 - **Horizon Next:** LiquidGlass, BentoGrid, Disclose, SearchBar, SegmentedControl,
   Slider, AdaptiveModuleGrid, InsightStrip, ContentScaffold, Dock, HorizonIcons
+- **Chrome:** AppBar / NavigationBar / menu themes; HorizonAppBar, HorizonNavigationBar,
+  HorizonPopupMenuButton
 
 ## Examples
 

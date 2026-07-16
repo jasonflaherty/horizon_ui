@@ -37,6 +37,8 @@ class HorizonGalleryApp extends StatelessWidget {
             WidgetbookTheme(name: 'Forest', data: HorizonThemes.forest()),
             WidgetbookTheme(name: 'Aurora', data: HorizonThemes.aurora()),
             WidgetbookTheme(name: 'Minimal', data: HorizonThemes.minimal()),
+            WidgetbookTheme(name: 'Mono', data: HorizonThemes.mono()),
+            WidgetbookTheme(name: 'Mono Dark', data: HorizonThemes.monoDark()),
             WidgetbookTheme(name: 'Calm', data: HorizonThemes.calm()),
           ],
         ),
@@ -365,6 +367,52 @@ class HorizonGalleryApp extends StatelessWidget {
                   builder: (context) => const Padding(
                     padding: EdgeInsets.all(16),
                     child: WindParticles(height: 140),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        WidgetbookFolder(
+          name: 'Chrome',
+          children: [
+            WidgetbookComponent(
+              name: 'HorizonAppBar',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Glass',
+                  builder: (context) => Scaffold(
+                    appBar: const HorizonAppBar(
+                      title: Text('Spots'),
+                      glass: true,
+                      automaticallyImplyLeading: false,
+                    ),
+                    body: const Center(child: Text('Body')),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'HorizonNavigationBar',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => Scaffold(
+                    body: const Center(child: Text('Body')),
+                    bottomNavigationBar: HorizonNavigationBar(
+                      selectedIndex: 0,
+                      onDestinationSelected: (_) {},
+                      destinations: const [
+                        NavigationDestination(
+                          icon: Icon(Icons.map),
+                          label: 'Map',
+                        ),
+                        NavigationDestination(
+                          icon: Icon(Icons.waves),
+                          label: 'Surf',
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

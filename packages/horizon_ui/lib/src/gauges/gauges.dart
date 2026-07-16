@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../animations/floating_transitions.dart';
+import '../charts/chart_data.dart';
 import '../extensions/horizon_context.dart';
 
 /// Circular progress / score gauge.
@@ -61,12 +62,7 @@ class HorizonCircularGauge extends StatelessWidget {
                         style: tokens.typography.numeric,
                       ),
                     if (label != null)
-                      Text(
-                        label!,
-                        style: tokens.typography.label.copyWith(
-                          color: tokens.colors.resolvedOnSurfaceVariant,
-                        ),
-                      ),
+                      Text(label!, style: horizonChartAnnotationStyle(tokens)),
                   ],
                 ),
               ),

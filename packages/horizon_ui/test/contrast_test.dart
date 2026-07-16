@@ -43,6 +43,8 @@ void main() {
     'aurora-light': HorizonThemes.auroraLight(),
     'minimal-light': HorizonThemes.minimal(),
     'minimal-dark': HorizonThemes.minimalDark(),
+    'mono-light': HorizonThemes.monoLight(),
+    'mono-dark': HorizonThemes.monoDark(),
     'calm-dark': HorizonThemes.calmDark(),
     'calm-light': HorizonThemes.calmLight(),
   };

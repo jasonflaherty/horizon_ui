@@ -7,6 +7,7 @@ import '../tokens/radius_tokens.dart';
 import '../tokens/spacing_tokens.dart';
 import '../tokens/tokens.dart';
 import '../tokens/typography_tokens.dart';
+import 'horizon_chrome_themes.dart';
 import 'horizon_theme_extension.dart';
 
 /// Factory for Horizon [ThemeData] variants that compose with Material 3.
@@ -179,7 +180,7 @@ abstract final class HorizonThemes {
       border: Color(0xFF1A4A55),
       glow: Color(0xFF00E5FF),
       surfaceVariant: Color(0xFF142030),
-      onSurfaceVariant: Color(0xFF9AD4E0),
+      onSurfaceVariant: Color(0xFFC8ECF4),
     ),
     typography: HorizonTypographyTokens.hud(color: const Color(0xFFE6F9FF)),
     elevation: HorizonElevationTokens.cyber(glow: const Color(0xFF00E5FF)),
@@ -371,7 +372,7 @@ abstract final class HorizonThemes {
       border: Color(0xFF2A3050),
       glow: Color(0xFF5EF0B8),
       surfaceVariant: Color(0xFF1A1E38),
-      onSurfaceVariant: Color(0xFFA8B0D8),
+      onSurfaceVariant: Color(0xFFC2CAF0),
     ),
     typography: HorizonTypographyTokens.hud(color: const Color(0xFFE8ECFF)),
     elevation: HorizonElevationTokens.cyber(glow: const Color(0xFF5EF0B8)),
@@ -482,6 +483,89 @@ abstract final class HorizonThemes {
       flat: [],
       raised: [],
       floating: [],
+    ),
+  );
+
+  /// Flat black-and-white ink theme — widgets without decorative chrome.
+  static ThemeData mono({Brightness brightness = Brightness.light}) {
+    return brightness == Brightness.dark ? monoDark() : monoLight();
+  }
+
+  static ThemeData monoLight() => _build(
+    id: 'mono-light',
+    brightness: Brightness.light,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF000000),
+      onPrimary: Color(0xFFFFFFFF),
+      secondary: Color(0xFF222222),
+      onSecondary: Color(0xFFFFFFFF),
+      accent: Color(0xFF000000),
+      onAccent: Color(0xFFFFFFFF),
+      success: Color(0xFF111111),
+      onSuccess: Color(0xFFFFFFFF),
+      warning: Color(0xFF333333),
+      onWarning: Color(0xFFFFFFFF),
+      danger: Color(0xFF000000),
+      onDanger: Color(0xFFFFFFFF),
+      surface: Color(0xFFFFFFFF),
+      onSurface: Color(0xFF000000),
+      background: Color(0xFFFFFFFF),
+      onBackground: Color(0xFF000000),
+      border: Color(0xFF000000),
+      glow: Color(0xFF000000),
+      surfaceVariant: Color(0xFFF2F2F2),
+      onSurfaceVariant: Color(0xFF222222),
+    ),
+    typography: HorizonTypographyTokens.material(
+      color: const Color(0xFF000000),
+    ),
+    elevation: HorizonElevationTokens.flat(),
+    radius: const HorizonRadiusTokens(
+      sm: 0,
+      md: 0,
+      lg: 0,
+      xl: 0,
+      xxl: 0,
+      pill: 0,
+    ),
+  );
+
+  static ThemeData monoDark() => _build(
+    id: 'mono-dark',
+    brightness: Brightness.dark,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFFFFFFFF),
+      onPrimary: Color(0xFF000000),
+      secondary: Color(0xFFDDDDDD),
+      onSecondary: Color(0xFF000000),
+      accent: Color(0xFFFFFFFF),
+      onAccent: Color(0xFF000000),
+      success: Color(0xFFEEEEEE),
+      onSuccess: Color(0xFF000000),
+      warning: Color(0xFFCCCCCC),
+      onWarning: Color(0xFF000000),
+      danger: Color(0xFFFFFFFF),
+      onDanger: Color(0xFF000000),
+      surface: Color(0xFF000000),
+      onSurface: Color(0xFFFFFFFF),
+      background: Color(0xFF000000),
+      onBackground: Color(0xFFFFFFFF),
+      border: Color(0xFFFFFFFF),
+      glow: Color(0xFFFFFFFF),
+      surfaceVariant: Color(0xFF111111),
+      onSurfaceVariant: Color(0xFFDDDDDD),
+    ),
+    typography: HorizonTypographyTokens.material(
+      color: const Color(0xFFFFFFFF),
+    ),
+    elevation: HorizonElevationTokens.flat(),
+    radius: const HorizonRadiusTokens(
+      sm: 0,
+      md: 0,
+      lg: 0,
+      xl: 0,
+      xxl: 0,
+      pill: 0,
     ),
   );
 
@@ -601,7 +685,7 @@ abstract final class HorizonThemes {
 
     final TextTheme textTheme = typography.toTextTheme();
 
-    return ThemeData(
+    final ThemeData base = ThemeData(
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
@@ -634,5 +718,7 @@ abstract final class HorizonThemes {
       ),
       dividerColor: colors.border,
     );
+
+    return HorizonChromeThemes.apply(base, tokens);
   }
 }

@@ -1,3 +1,11 @@
+## 0.5.0
+
+### Added
+
+- Material chrome theming for AppBar, NavigationBar, bottom nav, rail, drawer, and menus
+- `HorizonAppBar`, `HorizonNavigationBar`, `HorizonPopupMenuButton`
+- Flat mono theme: `HorizonThemes.mono()` / `monoDark()`
+
 ## 0.4.1
 
 ### Changed

@@ -27,7 +27,7 @@ class HorizonLineChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color color = lineColor ?? context.horizon.colors.primary;
-    final Color grid = context.horizon.colors.border.withValues(alpha: 0.4);
+    final Color grid = context.horizon.colors.border.withValues(alpha: 0.65);
 
     return Semantics(
       label: semanticLabel ?? 'Line chart',
@@ -74,7 +74,7 @@ class HorizonAreaChart extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color color = lineColor ?? context.horizon.colors.primary;
     final Color fill = fillColor ?? color.withValues(alpha: 0.22);
-    final Color grid = context.horizon.colors.border.withValues(alpha: 0.4);
+    final Color grid = context.horizon.colors.border.withValues(alpha: 0.65);
 
     return Semantics(
       label: semanticLabel ?? 'Area chart',

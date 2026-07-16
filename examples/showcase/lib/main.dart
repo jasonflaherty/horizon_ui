@@ -10,6 +10,7 @@ enum ShowcaseThemeId {
   forest,
   aurora,
   minimal,
+  mono,
   calm,
 }
 
@@ -22,6 +23,7 @@ extension ShowcaseThemeIdX on ShowcaseThemeId {
     ShowcaseThemeId.forest => 'Forest',
     ShowcaseThemeId.aurora => 'Aurora',
     ShowcaseThemeId.minimal => 'Minimal',
+    ShowcaseThemeId.mono => 'Mono',
     ShowcaseThemeId.calm => 'Calm',
   };
 
@@ -40,6 +42,8 @@ extension ShowcaseThemeIdX on ShowcaseThemeId {
       dark ? HorizonThemes.auroraDark() : HorizonThemes.auroraLight(),
     ShowcaseThemeId.minimal =>
       dark ? HorizonThemes.minimalDark() : HorizonThemes.minimal(),
+    ShowcaseThemeId.mono =>
+      dark ? HorizonThemes.monoDark() : HorizonThemes.monoLight(),
     ShowcaseThemeId.calm =>
       dark ? HorizonThemes.calmDark() : HorizonThemes.calmLight(),
   };
@@ -167,6 +171,42 @@ MaterialApp(
   theme: HorizonThemes.cyber(),
   darkTheme: HorizonThemes.cyberDark(),
   home: const MyHomePage(),
+);''',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: _Section(
+                title: 'Chrome',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _WidgetDemo(
+                      preview: const _ChromeDemo(),
+                      code: '''
+HorizonAppScaffold(
+  appBar: HorizonAppBar(
+    title: Text('Spots'),
+    glass: true,
+    actions: [
+      HorizonPopupMenuButton<String>(
+        itemBuilder: (context) => [
+          PopupMenuItem(value: 'share', child: Text('Share')),
+        ],
+      ),
+    ],
+  ),
+  bottomNavigationBar: HorizonNavigationBar(
+    selectedIndex: 0,
+    onDestinationSelected: (i) {},
+    destinations: [
+      NavigationDestination(icon: Icon(Icons.map), label: 'Map'),
+      NavigationDestination(icon: Icon(Icons.waves), label: 'Surf'),
+    ],
+  ),
+  body: ...,
 );''',
                     ),
                   ],
@@ -1267,6 +1307,87 @@ class _CodeDropdown extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ChromeDemo extends StatefulWidget {
+  const _ChromeDemo();
+
+  @override
+  State<_ChromeDemo> createState() => _ChromeDemoState();
+}
+
+class _ChromeDemoState extends State<_ChromeDemo> {
+  int _index = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final HorizonTokens tokens = context.horizon;
+    return SizedBox(
+      height: 280,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(tokens.radius.lg),
+          border: Border.all(color: tokens.colors.border),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(tokens.radius.lg),
+          child: HorizonAppScaffold(
+            appBar: HorizonAppBar(
+              title: const Text('Spots'),
+              glass: true,
+              automaticallyImplyLeading: false,
+              actions: [
+                HorizonPopupMenuButton<String>(
+                  tooltip: 'More',
+                  icon: const Icon(Icons.more_vert),
+                  itemBuilder: (BuildContext context) => const [
+                    PopupMenuItem(value: 'share', child: Text('Share')),
+                    PopupMenuItem(value: 'pin', child: Text('Pin spot')),
+                    PopupMenuItem(value: 'hide', child: Text('Hide')),
+                  ],
+                  onSelected: (_) {},
+                ),
+              ],
+            ),
+            bottomNavigationBar: HorizonNavigationBar(
+              selectedIndex: _index,
+              onDestinationSelected: (int i) => setState(() => _index = i),
+              destinations: const [
+                NavigationDestination(
+                  icon: Icon(Icons.map_outlined),
+                  selectedIcon: Icon(Icons.map),
+                  label: 'Map',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.waves_outlined),
+                  selectedIcon: Icon(Icons.waves),
+                  label: 'Surf',
+                ),
+                NavigationDestination(
+                  icon: Icon(Icons.person_outline),
+                  selectedIcon: Icon(Icons.person),
+                  label: 'You',
+                ),
+              ],
+            ),
+            body: ColoredBox(
+              color: tokens.colors.background,
+              child: Center(
+                child: Text(
+                  'Chrome preview · ${_index == 0
+                      ? 'Map'
+                      : _index == 1
+                      ? 'Surf'
+                      : 'You'}',
+                  style: tokens.typography.body,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

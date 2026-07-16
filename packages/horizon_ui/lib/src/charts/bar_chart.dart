@@ -69,10 +69,7 @@ class HorizonBarChart extends StatelessWidget {
                           points[i].label,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: tokens.typography.label.copyWith(
-                            color: tokens.colors.resolvedOnSurfaceVariant,
-                            fontSize: 10,
-                          ),
+                          style: horizonChartAnnotationStyle(tokens),
                         ),
                       ],
                     ),

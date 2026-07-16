@@ -49,6 +49,7 @@ MaterialApp(
 | Forest | `HorizonThemes.forest()` / `forestDark()` |
 | Aurora | `HorizonThemes.aurora()` / `auroraLight()` |
 | Minimal | `HorizonThemes.minimal()` / `minimalDark()` |
+| Mono | `HorizonThemes.mono()` / `monoDark()` |
 | Calm | `HorizonThemes.calm()` / `calmLight()` |
 
 ## Components
@@ -73,6 +74,7 @@ MaterialApp(
 - **Inputs:** SearchBar, SegmentedControl, Slider
 - **Adaptive:** AdaptiveModuleGrid, InsightStrip, VoiceAffordance
 - **Nav motion:** ContentScaffold, Dock, journey transition
+- **Chrome (0.5):** AppBar / NavigationBar / menu themes; HorizonAppBar, HorizonNavigationBar, PopupMenuButton
 - **Icons:** HorizonIcons starter set
 
 ## Examples

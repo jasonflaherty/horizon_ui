@@ -189,12 +189,7 @@ class _TimelineRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 64,
-            child: Text(
-              event.time,
-              style: tokens.typography.label.copyWith(
-                color: tokens.colors.resolvedOnSurfaceVariant,
-              ),
-            ),
+            child: Text(event.time, style: horizonChartAnnotationStyle(tokens)),
           ),
           SizedBox(
             width: 24,

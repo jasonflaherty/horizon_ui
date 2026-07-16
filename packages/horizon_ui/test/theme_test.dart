@@ -42,6 +42,22 @@ void main() {
       expect(ext.tokens.elevation.rimIntensity, 1);
     });
 
+    test('mono theme is flat black and white', () {
+      final ThemeData light = HorizonThemes.monoLight();
+      final ThemeData dark = HorizonThemes.monoDark();
+      final HorizonThemeExtension lightExt = light
+          .extension<HorizonThemeExtension>()!;
+      final HorizonThemeExtension darkExt = dark
+          .extension<HorizonThemeExtension>()!;
+      expect(lightExt.id, 'mono-light');
+      expect(darkExt.id, 'mono-dark');
+      expect(lightExt.tokens.colors.primary, const Color(0xFF000000));
+      expect(darkExt.tokens.colors.primary, const Color(0xFFFFFFFF));
+      expect(lightExt.tokens.elevation.glassBlur, 0);
+      expect(lightExt.tokens.elevation.raised, isEmpty);
+      expect(lightExt.tokens.radius.lg, 0);
+    });
+
     test('motion tokens match design scale', () {
       final HorizonMotionTokens motion = HorizonThemes.classic()
           .extension<HorizonThemeExtension>()!

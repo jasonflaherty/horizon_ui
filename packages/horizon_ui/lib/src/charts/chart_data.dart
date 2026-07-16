@@ -1,4 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import '../tokens/tokens.dart';
 
 /// A labeled numeric sample for charts.
 @immutable
@@ -21,6 +23,17 @@ class HorizonChartSeries {
   final String id;
   final String? label;
   final List<HorizonChartPoint> points;
+}
+
+/// High-legibility annotation style for chart/gauge labels (esp. HUD themes).
+TextStyle horizonChartAnnotationStyle(HorizonTokens tokens) {
+  return tokens.typography.label.copyWith(
+    color: tokens.colors.onSurface.withValues(alpha: 0.92),
+    fontSize: 12,
+    letterSpacing: 0.15,
+    fontWeight: FontWeight.w600,
+    height: 1.2,
+  );
 }
 
 double chartMin(Iterable<double> values, {double fallback = 0}) {
