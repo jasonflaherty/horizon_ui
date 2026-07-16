@@ -194,7 +194,11 @@ class _RefractionSheenState extends State<_RefractionSheen>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final Duration duration = HorizonMotion.slow(context) * 8;
+    // ~30% slower than the original 8× slow cycle for a calmer wave.
+    final Duration duration = Duration(
+      microseconds:
+          (HorizonMotion.slow(context).inMicroseconds * 10.4).round(),
+    );
     if (duration > Duration.zero) {
       _controller
         ..duration = duration
