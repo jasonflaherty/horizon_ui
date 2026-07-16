@@ -1,5 +1,5 @@
 name: horizon_ui
-repository: https://github.com/horizon-ui/horizon_ui
+repository: https://github.com/jasonflaherty/horizon_ui
 
 packages:
   - packages/**

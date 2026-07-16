@@ -17,6 +17,9 @@ class LiquidGlass extends StatelessWidget {
     this.onTap,
     this.semanticLabel,
     this.enableRefraction = true,
+    this.sheenStrength,
+    this.sheenSpeed = 1.0,
+    this.sheenDuration,
   });
 
   final Widget child;
@@ -24,7 +27,20 @@ class LiquidGlass extends StatelessWidget {
   final BorderRadius? borderRadius;
   final VoidCallback? onTap;
   final String? semanticLabel;
+
+  /// When false, omits the animated refraction sheen (static glass).
+  /// Also disabled automatically when reduced motion is preferred.
   final bool enableRefraction;
+
+  /// Sheen highlight strength. Null uses theme [HorizonElevationTokens.refraction].
+  final double? sheenStrength;
+
+  /// Cycle speed multiplier (1 = default, 0.5 ≈ half as fast, 2 ≈ twice as fast).
+  final double sheenSpeed;
+
+  /// Optional explicit sheen period. When null, uses ~10.4× theme slow duration
+  /// scaled by [sheenSpeed].
+  final Duration? sheenDuration;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +55,7 @@ class LiquidGlass extends StatelessWidget {
     final double specular = tokens.elevation.specular;
     final double edge = tokens.elevation.edgeWidth;
     final Color glow = tokens.colors.glow;
+    final double strength = sheenStrength ?? tokens.elevation.refraction;
 
     final List<BoxShadow> depthShadows = [
       ...tokens.elevation.raised,
@@ -143,7 +160,9 @@ class LiquidGlass extends StatelessWidget {
                     Positioned.fill(
                       child: IgnorePointer(
                         child: _RefractionSheen(
-                          strength: tokens.elevation.refraction,
+                          strength: strength,
+                          speed: sheenSpeed,
+                          duration: sheenDuration,
                         ),
                       ),
                     ),
@@ -173,9 +192,15 @@ class LiquidGlass extends StatelessWidget {
 }
 
 class _RefractionSheen extends StatefulWidget {
-  const _RefractionSheen({required this.strength});
+  const _RefractionSheen({
+    required this.strength,
+    this.speed = 1.0,
+    this.duration,
+  });
 
   final double strength;
+  final double speed;
+  final Duration? duration;
 
   @override
   State<_RefractionSheen> createState() => _RefractionSheenState();
@@ -191,19 +216,35 @@ class _RefractionSheenState extends State<_RefractionSheen>
     super.initState();
     _controller = AnimationController(vsync: this);
     // Sine ease softens acceleration and the L↔R turnaround.
-    _sheen = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOutSine,
-    );
+    _sheen = CurvedAnimation(parent: _controller, curve: Curves.easeInOutSine);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // ~30% slower than the original 8× slow cycle for a calmer wave.
+    _syncDuration();
+  }
+
+  @override
+  void didUpdateWidget(covariant _RefractionSheen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.speed != widget.speed ||
+        oldWidget.duration != widget.duration) {
+      _syncDuration();
+    }
+  }
+
+  void _syncDuration() {
+    // Default ~30% slower than the original 8× slow cycle.
+    final double speed = widget.speed <= 0 ? 1.0 : widget.speed;
+    final Duration base =
+        widget.duration ??
+        Duration(
+          microseconds: (HorizonMotion.slow(context).inMicroseconds * 10.4)
+              .round(),
+        );
     final Duration duration = Duration(
-      microseconds:
-          (HorizonMotion.slow(context).inMicroseconds * 10.4).round(),
+      microseconds: (base.inMicroseconds / speed).round().clamp(1, 1 << 62),
     );
     if (duration > Duration.zero) {
       _controller

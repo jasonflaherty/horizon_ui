@@ -10,6 +10,23 @@ Widget _wrap(Widget child, {ThemeData? theme}) {
 }
 
 void main() {
+  testWidgets('LiquidGlass and GlassCard honor enableRefraction', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      _wrap(
+        const Column(
+          children: [
+            LiquidGlass(enableRefraction: false, child: Text('Static')),
+            GlassCard(enableRefraction: false, child: Text('Card')),
+          ],
+        ),
+      ),
+    );
+    expect(find.text('Static'), findsOneWidget);
+    expect(find.text('Card'), findsOneWidget);
+  });
+
   test('calm theme exposes calm density and liquid fields', () {
     final HorizonThemeExtension ext = HorizonThemes.calm()
         .extension<HorizonThemeExtension>()!;

@@ -3,6 +3,12 @@
 ### Changed
 
 - Luxury Coastal and Cyber: deeper liquid-glass blur, optical rim lighting, translucent surfaces
+- Calmer, sine-eased refraction sheen (~30% slower)
+
+### Added
+
+- `LiquidGlass` / `GlassCard` sheen controls: `enableRefraction`, `sheenStrength`, `sheenSpeed`, `sheenDuration`
+- Standalone package README suitable for pub.dev / git consumers
 
 ## 0.4.0
 
@@ -43,4 +49,4 @@
 - Buttons: Filled, Glass, Glow, Icon, FAB
 - Cards: Glass, Hero, Metric, Forecast, Alert
 - Widgetbook gallery example
-- CI for analyze, test, format, and publish dry-run
+- Melos workspace scripts for analyze, test, and format

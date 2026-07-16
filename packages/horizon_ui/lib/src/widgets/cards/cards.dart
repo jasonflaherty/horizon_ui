@@ -12,12 +12,20 @@ class GlassCard extends StatelessWidget {
     this.padding,
     this.onTap,
     this.semanticLabel,
+    this.enableRefraction = true,
+    this.sheenStrength,
+    this.sheenSpeed = 1.0,
+    this.sheenDuration,
   });
 
   final Widget child;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onTap;
   final String? semanticLabel;
+  final bool enableRefraction;
+  final double? sheenStrength;
+  final double sheenSpeed;
+  final Duration? sheenDuration;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +33,10 @@ class GlassCard extends StatelessWidget {
       padding: padding,
       onTap: onTap,
       semanticLabel: semanticLabel,
+      enableRefraction: enableRefraction,
+      sheenStrength: sheenStrength,
+      sheenSpeed: sheenSpeed,
+      sheenDuration: sheenDuration,
       child: child,
     );
   }

@@ -2,6 +2,9 @@
 
 - Deepen Luxury Coastal and Cyber liquid-glass look: stronger blur/rim lighting,
   translucent surfaces, optical corner radii, richer glow depth on `LiquidGlass`.
+- Calmer sine-eased sheen (~30% slower); tunable via `enableRefraction`,
+  `sheenStrength`, `sheenSpeed`, and `sheenDuration` on `LiquidGlass` / `GlassCard`.
+- Package README rewritten for git / pub consumers.
 
 ## 0.4.0
 

@@ -10,8 +10,13 @@ Open-source Flutter design system for data-rich outdoor applications
 ```yaml
 dependencies:
   horizon_ui:
-    path: packages/horizon_ui   # or pub.dev version when published
+    git:
+      url: https://github.com/jasonflaherty/horizon_ui.git
+      ref: v0.4.1
+      path: packages/horizon_ui
 ```
+
+For local monorepo work, use a path dependency on `packages/horizon_ui`.
 
 ## Quick start
 
