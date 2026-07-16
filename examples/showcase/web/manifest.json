@@ -1,11 +1,11 @@
 {
-    "name": "showcase",
-    "short_name": "showcase",
+    "name": "Horizon UI",
+    "short_name": "Horizon",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#0A4A5C",
+    "theme_color": "#0A4A5C",
+    "description": "Horizon UI design system showcase",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

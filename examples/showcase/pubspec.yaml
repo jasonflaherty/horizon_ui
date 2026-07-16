@@ -19,6 +19,18 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  web:
+    generate: true
+  macos:
+    generate: true
+  image_path: ../../assets/branding/horizon-ui-icon.png
+  adaptive_icon_background: "#0A4A5C"
+  adaptive_icon_foreground: ../../assets/branding/horizon-ui-icon.png
