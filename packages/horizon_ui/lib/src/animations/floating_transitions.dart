@@ -129,6 +129,46 @@ abstract final class HorizonPageTransitions {
           },
     );
   }
+
+  /// Continuous journey: scale + fade for cause/effect navigation.
+  static Route<T> journey<T extends Object?>({
+    required Widget page,
+    required BuildContext context,
+    RouteSettings? settings,
+  }) {
+    final Duration duration = HorizonMotion.medium(context);
+    final Curve curve = context.horizon.motion.human;
+    return PageRouteBuilder<T>(
+      settings: settings,
+      transitionDuration: duration,
+      reverseTransitionDuration: duration,
+      pageBuilder:
+          (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+          ) => page,
+      transitionsBuilder:
+          (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
+          ) {
+            final Animation<double> curved = CurvedAnimation(
+              parent: animation,
+              curve: curve,
+            );
+            return FadeTransition(
+              opacity: curved,
+              child: ScaleTransition(
+                scale: Tween<double>(begin: 0.94, end: 1).animate(curved),
+                child: child,
+              ),
+            );
+          },
+    );
+  }
 }
 
 /// Drives a 0→1 draw progress for charts (instant when reduced motion).

@@ -1,3 +1,4 @@
-# Icons (Phase 3)
+# Icons (Phase Next)
 
-Outdoor-specific iconography for Horizon UI.
+Starter outdoor icon aliases via [HorizonIcons] — Material-backed until a
+custom icon font is vendored.

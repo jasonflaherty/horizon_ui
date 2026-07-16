@@ -1,3 +1,11 @@
+## 0.4.0
+
+- Horizon Next visual language: `HorizonThemes.calm()`, liquid-glass elevation tokens, `LiquidGlass` / upgraded `GlassCard`.
+- Layout: `HorizonBentoGrid`, `HorizonDisclose`.
+- Inputs & icons: `HorizonSearchBar`, `HorizonSegmentedControl`, `HorizonSlider`, `HorizonIcons`.
+- Adaptive contracts: `HorizonAdaptiveModuleGrid`, `HorizonInsightStrip`, `HorizonVoiceAffordance`.
+- Navigation motion: `HorizonContentScaffold`, `HorizonDock`, `HorizonPageTransitions.journey`.
+
 ## 0.3.0
 
 - Phase 3: Alpine/Forest/Aurora/Minimal themes, map overlays, outdoor widgets.

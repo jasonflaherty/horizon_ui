@@ -44,6 +44,7 @@ MaterialApp(
 | Forest | `HorizonThemes.forest()` / `forestDark()` |
 | Aurora | `HorizonThemes.aurora()` / `auroraLight()` |
 | Minimal | `HorizonThemes.minimal()` / `minimalDark()` |
+| Calm | `HorizonThemes.calm()` / `calmLight()` |
 
 ## Components
 
@@ -61,9 +62,17 @@ MaterialApp(
 - **Maps:** ForecastMarker, AnimatedHalo, SelectionRing, HeatMapOverlay, WindParticles
 - **Outdoor:** ScoreBadge, StatusPill, TrendChip, MetricTile, UnitSelector, SpotHeader, ConditionChip, DayPartStrip
 
+### Horizon Next (0.4)
+- **Surfaces:** LiquidGlass, HorizonTexture
+- **Layout:** BentoGrid, Disclose
+- **Inputs:** SearchBar, SegmentedControl, Slider
+- **Adaptive:** AdaptiveModuleGrid, InsightStrip, VoiceAffordance
+- **Nav motion:** ContentScaffold, Dock, journey transition
+- **Icons:** HorizonIcons starter set
+
 ## Examples
 
-**Showcase app** — theme switcher with Phases 1–3 components and copyable code:
+**Showcase app** — theme switcher (Calm default) with Phases 1–3 + Horizon Next and copyable code:
 
 ```bash
 melos bootstrap
@@ -83,7 +92,8 @@ cd examples/gallery && flutter run -d chrome
 1. ~~Tokens, themes, typography, buttons, cards~~
 2. ~~Charts, gauges, navigation, animations~~
 3. ~~Maps and outdoor-specific widgets~~
-4. Docs site and community themes
+4. Docs site and community themes (lite notes in showcase; full site TBD)
+5. ~~Horizon Next: liquid glass, calm UI, adaptive modules, inputs~~
 
 ## License
 

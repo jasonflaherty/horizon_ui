@@ -10,6 +10,7 @@ enum ShowcaseThemeId {
   forest,
   aurora,
   minimal,
+  calm,
 }
 
 extension ShowcaseThemeIdX on ShowcaseThemeId {
@@ -21,6 +22,7 @@ extension ShowcaseThemeIdX on ShowcaseThemeId {
     ShowcaseThemeId.forest => 'Forest',
     ShowcaseThemeId.aurora => 'Aurora',
     ShowcaseThemeId.minimal => 'Minimal',
+    ShowcaseThemeId.calm => 'Calm',
   };
 
   ThemeData themeData({required bool dark}) => switch (this) {
@@ -38,6 +40,8 @@ extension ShowcaseThemeIdX on ShowcaseThemeId {
       dark ? HorizonThemes.auroraDark() : HorizonThemes.auroraLight(),
     ShowcaseThemeId.minimal =>
       dark ? HorizonThemes.minimalDark() : HorizonThemes.minimal(),
+    ShowcaseThemeId.calm =>
+      dark ? HorizonThemes.calmDark() : HorizonThemes.calmLight(),
   };
 }
 
@@ -53,7 +57,7 @@ class ShowcaseApp extends StatefulWidget {
 }
 
 class _ShowcaseAppState extends State<ShowcaseApp> {
-  ShowcaseThemeId _themeId = ShowcaseThemeId.cyber;
+  ShowcaseThemeId _themeId = ShowcaseThemeId.calm;
   bool _dark = true;
 
   @override
@@ -114,7 +118,7 @@ class ShowcaseHome extends StatelessWidget {
                     Text('Horizon UI', style: tokens.typography.display),
                     SizedBox(height: tokens.spacing.x2),
                     Text(
-                      'Phases 1–3 — themes, components, charts, maps, and outdoor widgets.',
+                      'Horizon Next — liquid glass, calm UI, adaptive modules, and inputs.',
                       style: tokens.typography.body.copyWith(
                         color: tokens.colors.resolvedOnSurfaceVariant,
                       ),
@@ -944,6 +948,199 @@ DayPartStrip(
             ),
             SliverToBoxAdapter(
               child: _Section(
+                title: 'Horizon Next',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _WidgetDemo(
+                      preview: HorizonInsightStrip(
+                        message: 'Best window: 6–8am · offshore 8kt',
+                        icon: HorizonIcons.sun,
+                        actionLabel: 'View',
+                        onAction: () {},
+                        onDismiss: () {},
+                      ),
+                      code: '''
+HorizonInsightStrip(
+  message: 'Best window: 6–8am · offshore 8kt',
+  icon: HorizonIcons.sun,
+  actionLabel: 'View',
+  onAction: () {},
+  onDismiss: () {},
+);''',
+                    ),
+                    SizedBox(height: tokens.spacing.x4),
+                    _WidgetDemo(
+                      preview: HorizonBentoGrid(
+                        cells: [
+                          HorizonBentoCell(
+                            columnSpan: 2,
+                            child: LiquidGlass(
+                              child: SpotHeader(
+                                name: 'Today',
+                                region: 'Ranked for your habits',
+                                trailing: ScoreBadge(score: 91),
+                              ),
+                            ),
+                          ),
+                          HorizonBentoCell(
+                            child: MetricTile(
+                              label: 'Swell',
+                              value: '6.2',
+                              unit: 'ft',
+                              icon: HorizonIcons.swell,
+                            ),
+                          ),
+                          HorizonBentoCell(
+                            child: MetricTile(
+                              label: 'Wind',
+                              value: '8',
+                              unit: 'kt',
+                              icon: HorizonIcons.wind,
+                            ),
+                          ),
+                        ],
+                      ),
+                      code: '''
+HorizonBentoGrid(
+  cells: [
+    HorizonBentoCell(columnSpan: 2, child: LiquidGlass(...)),
+    HorizonBentoCell(child: MetricTile(...)),
+  ],
+);''',
+                    ),
+                    SizedBox(height: tokens.spacing.x4),
+                    _WidgetDemo(
+                      preview: HorizonDisclose(
+                        title: 'Secondary metrics',
+                        subtitle: 'Progressive disclosure',
+                        child: Text(
+                          'Tide lag, local pressure, and crowd estimate.',
+                          style: tokens.typography.body,
+                        ),
+                      ),
+                      code: '''
+HorizonDisclose(
+  title: 'Secondary metrics',
+  subtitle: 'Progressive disclosure',
+  child: Text('...'),
+);''',
+                    ),
+                    SizedBox(height: tokens.spacing.x4),
+                    _WidgetDemo(
+                      preview: HorizonAdaptiveModuleGrid(
+                        modules: [
+                          HorizonModule(
+                            id: 'tide',
+                            priority: 2,
+                            builder: (_) => AlertCard(
+                              title: 'Rising tide',
+                              message: 'Surface in 40 minutes.',
+                              tone: HorizonAlertTone.info,
+                            ),
+                          ),
+                          HorizonModule(
+                            id: 'primary',
+                            priority: 10,
+                            builder: (_) => ForecastCard(
+                              title: 'Priority spot',
+                              score: 94,
+                              waveHeight: 7.1,
+                              swellPeriod: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                      code: '''
+HorizonAdaptiveModuleGrid(
+  modules: [
+    HorizonModule(id: 'primary', priority: 10, builder: (...)),
+    HorizonModule(id: 'tide', priority: 2, builder: (...)),
+  ],
+);''',
+                    ),
+                    SizedBox(height: tokens.spacing.x4),
+                    _WidgetDemo(
+                      preview: Column(
+                        children: [
+                          HorizonSearchBar(hintText: 'Search spots'),
+                          SizedBox(height: tokens.spacing.x3),
+                          _InputsDemo(),
+                        ],
+                      ),
+                      code: '''
+HorizonSearchBar(hintText: 'Search spots');
+HorizonSegmentedControl(...);
+HorizonSlider(value: 0.6, onChanged: (v) {});
+HorizonVoiceAffordance(onPressed: () {});''',
+                    ),
+                    SizedBox(height: tokens.spacing.x4),
+                    _WidgetDemo(
+                      preview: SizedBox(
+                        height: 220,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: tokens.colors.surface,
+                            borderRadius: BorderRadius.circular(
+                              tokens.radius.lg,
+                            ),
+                            border: Border.all(color: tokens.colors.border),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                              tokens.radius.lg,
+                            ),
+                            child: Stack(
+                              children: [
+                                HorizonContentScaffold(
+                                  appBar: AppBar(
+                                    title: const Text('Scroll to collapse'),
+                                    automaticallyImplyLeading: false,
+                                  ),
+                                  body: ListView.builder(
+                                    itemCount: 12,
+                                    padding: EdgeInsets.only(
+                                      bottom: tokens.spacing.x16,
+                                    ),
+                                    itemBuilder: (_, int i) => ListTile(
+                                      title: Text('Session note ${i + 1}'),
+                                    ),
+                                  ),
+                                ),
+                                HorizonDock(
+                                  children: [
+                                    HorizonIconButton(
+                                      icon: HorizonIcons.mapPin,
+                                      tooltip: 'Pin',
+                                      onPressed: () {},
+                                    ),
+                                    HorizonVoiceAffordance(onPressed: () {}),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      code: '''
+HorizonContentScaffold(
+  appBar: AppBar(title: Text('Scroll to collapse')),
+  body: ListView(...),
+);
+// Overlay or FAB slot:
+HorizonDock(
+  children: [HorizonVoiceAffordance(onPressed: () {})],
+);
+// Navigator.push(context, HorizonPageTransitions.journey(
+//   context: context, page: DetailPage(),
+// ));''',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: _Section(
                 title: 'Typography',
                 child: _WidgetDemo(
                   preview: Column(
@@ -1100,6 +1297,49 @@ class _Section extends StatelessWidget {
           child,
         ],
       ),
+    );
+  }
+}
+
+class _InputsDemo extends StatefulWidget {
+  const _InputsDemo();
+
+  @override
+  State<_InputsDemo> createState() => _InputsDemoState();
+}
+
+class _InputsDemoState extends State<_InputsDemo> {
+  String _unit = 'ft';
+  double _range = 0.65;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        HorizonSegmentedControl<String>(
+          segments: const [
+            ButtonSegment(value: 'ft', label: Text('ft')),
+            ButtonSegment(value: 'm', label: Text('m')),
+          ],
+          selected: _unit,
+          onChanged: (String v) => setState(() => _unit = v),
+        ),
+        HorizonSlider(
+          value: _range,
+          label: _range.toStringAsFixed(1),
+          onChanged: (double v) => setState(() => _range = v),
+        ),
+        Row(
+          children: [
+            HorizonVoiceAffordance(onPressed: () {}),
+            const Spacer(),
+            Icon(HorizonIcons.wave, color: context.horizon.colors.primary),
+            SizedBox(width: context.horizon.spacing.x2),
+            Icon(HorizonIcons.trail, color: context.horizon.colors.primary),
+          ],
+        ),
+      ],
     );
   }
 }

@@ -44,6 +44,8 @@ class HorizonTokens {
     );
   }
 
+  bool get isCalmDensity => spacing.density == HorizonDensity.calm;
+
   HorizonTokens lerp(HorizonTokens other, double t) {
     return HorizonTokens(
       colors: colors.lerp(other.colors, t),

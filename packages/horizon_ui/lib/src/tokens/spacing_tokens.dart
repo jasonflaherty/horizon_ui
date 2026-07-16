@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
 
+/// Spacing density presets.
+enum HorizonDensity { standard, calm }
+
 /// Spacing scale used across layout and components.
 @immutable
 class HorizonSpacingTokens {
@@ -14,6 +17,7 @@ class HorizonSpacingTokens {
     this.x10 = 40,
     this.x12 = 48,
     this.x16 = 64,
+    this.density = HorizonDensity.standard,
   });
 
   final double x1;
@@ -26,8 +30,24 @@ class HorizonSpacingTokens {
   final double x10;
   final double x12;
   final double x16;
+  final HorizonDensity density;
 
   static const HorizonSpacingTokens standard = HorizonSpacingTokens();
+
+  /// Roomier scale for Calm UI — fewer choices, more breath.
+  static const HorizonSpacingTokens calm = HorizonSpacingTokens(
+    x1: 6,
+    x2: 10,
+    x3: 14,
+    x4: 18,
+    x5: 24,
+    x6: 28,
+    x8: 36,
+    x10: 44,
+    x12: 56,
+    x16: 72,
+    density: HorizonDensity.calm,
+  );
 
   HorizonSpacingTokens lerp(HorizonSpacingTokens other, double t) {
     double lerpDouble(double a, double b) => a + (b - a) * t;
@@ -42,6 +62,7 @@ class HorizonSpacingTokens {
       x10: lerpDouble(x10, other.x10),
       x12: lerpDouble(x12, other.x12),
       x16: lerpDouble(x16, other.x16),
+      density: t < 0.5 ? density : other.density,
     );
   }
 }

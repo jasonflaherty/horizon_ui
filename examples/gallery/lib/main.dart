@@ -37,6 +37,7 @@ class HorizonGalleryApp extends StatelessWidget {
             WidgetbookTheme(name: 'Forest', data: HorizonThemes.forest()),
             WidgetbookTheme(name: 'Aurora', data: HorizonThemes.aurora()),
             WidgetbookTheme(name: 'Minimal', data: HorizonThemes.minimal()),
+            WidgetbookTheme(name: 'Calm', data: HorizonThemes.calm()),
           ],
         ),
         InspectorAddon(),
@@ -388,6 +389,139 @@ class HorizonGalleryApp extends StatelessWidget {
                         tone: HorizonStatusTone.warning,
                       ),
                       trailing: ScoreBadge(score: 88),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        WidgetbookFolder(
+          name: 'Horizon Next',
+          children: [
+            WidgetbookComponent(
+              name: 'LiquidGlass',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: LiquidGlass(
+                      child: Text(
+                        'Liquid glass surface',
+                        style: context.horizon.typography.body,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'HorizonInsightStrip',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Best window',
+                  builder: (context) => Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: HorizonInsightStrip(
+                      message: 'Best window: 6–8am · offshore 8kt',
+                      icon: HorizonIcons.sun,
+                      actionLabel: 'View',
+                      onAction: () {},
+                      onDismiss: () {},
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'HorizonBentoGrid',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Forecast home',
+                  builder: (context) => const Padding(
+                    padding: EdgeInsets.all(24),
+                    child: HorizonBentoGrid(
+                      cells: [
+                        HorizonBentoCell(
+                          columnSpan: 2,
+                          child: MetricTile(
+                            label: 'Primary',
+                            value: '6.2',
+                            unit: 'ft',
+                            icon: HorizonIcons.swell,
+                          ),
+                        ),
+                        HorizonBentoCell(
+                          child: MetricTile(
+                            label: 'Wind',
+                            value: '8',
+                            unit: 'kt',
+                            icon: HorizonIcons.wind,
+                          ),
+                        ),
+                        HorizonBentoCell(
+                          child: MetricTile(
+                            label: 'Tide',
+                            value: '2.1',
+                            unit: 'ft',
+                            icon: HorizonIcons.tide,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'HorizonDisclose',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Collapsed',
+                  builder: (context) => const Padding(
+                    padding: EdgeInsets.all(24),
+                    child: HorizonDisclose(
+                      title: 'Secondary metrics',
+                      subtitle: 'Tap to reveal',
+                      child: Text('Tide lag and local pressure.'),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'HorizonSearchBar',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => const Padding(
+                    padding: EdgeInsets.all(24),
+                    child: HorizonSearchBar(hintText: 'Search spots'),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'HorizonDock',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Thumb dock',
+                  builder: (context) => SizedBox(
+                    height: 160,
+                    child: Stack(
+                      children: [
+                        HorizonDock(
+                          children: [
+                            HorizonVoiceAffordance(onPressed: () {}),
+                            HorizonIconButton(
+                              icon: HorizonIcons.mapPin,
+                              tooltip: 'Pin',
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),

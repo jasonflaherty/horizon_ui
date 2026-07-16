@@ -109,24 +109,9 @@ abstract final class HorizonThemes {
     typography: HorizonTypographyTokens.editorial(
       color: const Color(0xFF0A2A32),
     ),
-    elevation: HorizonElevationTokens(
-      glassBlur: 24,
-      glassOpacity: 0.62,
-      flat: const [],
-      raised: [
-        BoxShadow(
-          color: const Color(0xFF0A2A32).withValues(alpha: 0.08),
-          blurRadius: 16,
-          offset: const Offset(0, 6),
-        ),
-      ],
-      floating: [
-        BoxShadow(
-          color: const Color(0xFF0A2A32).withValues(alpha: 0.14),
-          blurRadius: 32,
-          offset: const Offset(0, 12),
-        ),
-      ],
+    elevation: HorizonElevationTokens.liquid(
+      shadowColor: const Color(0xFF0A2A32),
+      tint: const Color(0x66A8D8E8),
     ),
   );
 
@@ -158,24 +143,9 @@ abstract final class HorizonThemes {
     typography: HorizonTypographyTokens.editorial(
       color: const Color(0xFFE8F4F7),
     ),
-    elevation: HorizonElevationTokens(
-      glassBlur: 28,
-      glassOpacity: 0.45,
-      flat: const [],
-      raised: [
-        BoxShadow(
-          color: const Color(0xFF7EC8D4).withValues(alpha: 0.12),
-          blurRadius: 20,
-          offset: const Offset(0, 6),
-        ),
-      ],
-      floating: [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.35),
-          blurRadius: 36,
-          offset: const Offset(0, 14),
-        ),
-      ],
+    elevation: HorizonElevationTokens.liquid(
+      shadowColor: Colors.black,
+      tint: const Color(0x447EC8D4),
     ),
   );
 
@@ -511,17 +481,92 @@ abstract final class HorizonThemes {
     ),
   );
 
+  /// Calm UI — dark-first wellness palette with bright accent dopamine.
+  static ThemeData calm({Brightness brightness = Brightness.dark}) {
+    return brightness == Brightness.light ? calmLight() : calmDark();
+  }
+
+  static ThemeData calmDark() => _build(
+    id: 'calm-dark',
+    brightness: Brightness.dark,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF6EC8FF),
+      onPrimary: Color(0xFF00324A),
+      secondary: Color(0xFF8A9AAB),
+      onSecondary: Color(0xFF121820),
+      accent: Color(0xFFFFB86B),
+      onAccent: Color(0xFF2A1800),
+      success: Color(0xFF7BCFA0),
+      onSuccess: Color(0xFF003822),
+      warning: Color(0xFFE0B878),
+      onWarning: Color(0xFF3A2800),
+      danger: Color(0xFFE08A90),
+      onDanger: Color(0xFF3F0A10),
+      surface: Color(0xFF161B22),
+      onSurface: Color(0xFFD8DEE6),
+      background: Color(0xFF0C1016),
+      onBackground: Color(0xFFD8DEE6),
+      border: Color(0xFF2A3340),
+      glow: Color(0xFF6EC8FF),
+      surfaceVariant: Color(0xFF1E2530),
+      onSurfaceVariant: Color(0xFF9AA6B4),
+    ),
+    typography: HorizonTypographyTokens.material(
+      color: const Color(0xFFD8DEE6),
+    ),
+    elevation: HorizonElevationTokens.calm(),
+    spacing: HorizonSpacingTokens.calm,
+    motion: HorizonMotionTokens.calmTokens,
+  );
+
+  static ThemeData calmLight() => _build(
+    id: 'calm-light',
+    brightness: Brightness.light,
+    colors: const HorizonColorTokens(
+      primary: Color(0xFF2A6F97),
+      onPrimary: Color(0xFFFFFFFF),
+      secondary: Color(0xFF5A6A78),
+      onSecondary: Color(0xFFFFFFFF),
+      accent: Color(0xFFD4893A),
+      onAccent: Color(0xFFFFFFFF),
+      success: Color(0xFF2F7A5A),
+      onSuccess: Color(0xFFFFFFFF),
+      warning: Color(0xFFB07A00),
+      onWarning: Color(0xFFFFFFFF),
+      danger: Color(0xFFB54550),
+      onDanger: Color(0xFFFFFFFF),
+      surface: Color(0xFFF4F6F8),
+      onSurface: Color(0xFF1A222C),
+      background: Color(0xFFEAEFF3),
+      onBackground: Color(0xFF1A222C),
+      border: Color(0xFFC5CED6),
+      glow: Color(0xFF2A6F97),
+      surfaceVariant: Color(0xFFDCE3EA),
+      onSurfaceVariant: Color(0xFF4A5664),
+    ),
+    typography: HorizonTypographyTokens.material(
+      color: const Color(0xFF1A222C),
+    ),
+    elevation: HorizonElevationTokens.calm(
+      shadowColor: const Color(0xFF1A222C),
+    ),
+    spacing: HorizonSpacingTokens.calm,
+    motion: HorizonMotionTokens.calmTokens,
+  );
+
   static ThemeData _build({
     required String id,
     required Brightness brightness,
     required HorizonColorTokens colors,
     required HorizonTypographyTokens typography,
     HorizonElevationTokens? elevation,
+    HorizonSpacingTokens? spacing,
+    HorizonMotionTokens? motion,
   }) {
     final HorizonTokens tokens = HorizonTokens(
       colors: colors,
       typography: typography,
-      spacing: HorizonSpacingTokens.standard,
+      spacing: spacing ?? HorizonSpacingTokens.standard,
       radius: HorizonRadiusTokens.standard,
       elevation:
           elevation ??
@@ -530,7 +575,7 @@ abstract final class HorizonThemes {
                 ? Colors.black
                 : const Color(0xFF1A1C1E),
           ),
-      motion: HorizonMotionTokens.standardTokens,
+      motion: motion ?? HorizonMotionTokens.standardTokens,
     );
 
     final ColorScheme colorScheme = ColorScheme(

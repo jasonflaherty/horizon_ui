@@ -1,11 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import '../../extensions/horizon_context.dart';
 import '../../tokens/tokens.dart';
+import '../surfaces/liquid_glass.dart';
 
-/// Frosted glass container.
+/// Frosted / liquid glass container (uses liquid elevation tokens).
 class GlassCard extends StatelessWidget {
   const GlassCard({
     super.key,
@@ -22,47 +21,11 @@ class GlassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HorizonTokens tokens = context.horizon;
-    final BorderRadius radius = BorderRadius.circular(tokens.radius.lg);
-    final EdgeInsetsGeometry resolvedPadding =
-        padding ?? EdgeInsets.all(tokens.spacing.x4);
-
-    Widget content = ClipRRect(
-      borderRadius: radius,
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: tokens.elevation.glassBlur,
-          sigmaY: tokens.elevation.glassBlur,
-        ),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: tokens.colors.surface.withValues(
-              alpha: tokens.elevation.glassOpacity,
-            ),
-            borderRadius: radius,
-            border: Border.all(
-              color: tokens.colors.border.withValues(alpha: 0.65),
-            ),
-            boxShadow: tokens.elevation.raised,
-          ),
-          child: Padding(padding: resolvedPadding, child: child),
-        ),
-      ),
-    );
-
-    if (onTap != null) {
-      content = Material(
-        type: MaterialType.transparency,
-        child: InkWell(onTap: onTap, borderRadius: radius, child: content),
-      );
-    }
-
-    return Semantics(
-      container: true,
-      label: semanticLabel,
-      button: onTap != null,
-      excludeSemantics: semanticLabel != null,
-      child: content,
+    return LiquidGlass(
+      padding: padding,
+      onTap: onTap,
+      semanticLabel: semanticLabel,
+      child: child,
     );
   }
 }

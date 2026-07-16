@@ -1,3 +1,15 @@
+## 0.4.0
+
+### Added
+
+- Calm theme (dark-first) with calm spacing density and human motion curves
+- Liquid glass tokens + `LiquidGlass` / upgraded `GlassCard`
+- `HorizonBentoGrid`, `HorizonDisclose`, `HorizonTexture`
+- Inputs: `HorizonSearchBar`, `HorizonSegmentedControl`, `HorizonSlider`
+- Adaptive: `HorizonModule`, `HorizonAdaptiveModuleGrid`, `HorizonInsightStrip`, `HorizonVoiceAffordance`
+- Navigation: `HorizonContentScaffold`, `HorizonDock`, journey page transition
+- Starter `HorizonIcons` outdoor aliases
+
 ## 0.3.0
 
 ### Added
