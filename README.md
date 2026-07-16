@@ -12,7 +12,7 @@ dependencies:
   horizon_ui:
     git:
       url: https://github.com/jasonflaherty/horizon_ui.git
-      ref: v0.4.1
+      ref: v0.5.0
       path: packages/horizon_ui
 ```
 
