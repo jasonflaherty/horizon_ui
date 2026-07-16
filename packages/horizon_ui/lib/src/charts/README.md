@@ -1,3 +1,10 @@
 # Charts (Phase 2)
 
-Line, area, bar, radar, tide, and timeline charts will live here.
+Implemented widgets:
+
+- `HorizonLineChart`
+- `HorizonAreaChart`
+- `HorizonBarChart`
+- `HorizonRadarChart`
+- `HorizonTideChart`
+- `HorizonTimeline`

@@ -43,10 +43,17 @@ MaterialApp(
 
 Alpine, Forest, Aurora, and Minimal are reserved for later phases.
 
-## Components (Phase 1)
+## Components
 
+### Phase 1
 - **Buttons:** Filled, Glass, Glow, Icon, FAB
 - **Cards:** Glass, Hero, Metric, Forecast, Alert
+
+### Phase 2
+- **Charts:** Line, Area, Bar, Radar, Tide, Timeline
+- **Gauges:** Circular, Linear, Compass, SwellRose
+- **Navigation:** AppScaffold, ResponsiveScaffold, SplitView, AdaptiveNavigation
+- **Motion:** AnimatedNumber, Pulse, Shimmer, RadarSweep, WaveRipple, FloatingCard, page transitions
 
 ## Examples
 
@@ -67,8 +74,8 @@ cd examples/gallery && flutter run -d chrome
 
 ## Roadmap
 
-1. Tokens, themes, typography, buttons, cards
-2. Charts, gauges, navigation, animations
+1. ~~Tokens, themes, typography, buttons, cards~~
+2. ~~Charts, gauges, navigation, animations~~
 3. Maps and outdoor-specific widgets
 4. Docs site and community themes
 

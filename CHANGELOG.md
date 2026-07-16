@@ -1,6 +1,11 @@
-# Changelog
+## 0.2.0
 
-All notable changes to this project will be documented in this file.
+### Added
+
+- Charts: line, area, bar, radar, tide, timeline
+- Gauges: circular, linear, compass, swell rose
+- Navigation: AppScaffold, ResponsiveScaffold, SplitView, AdaptiveNavigation
+- Animations: count-up, pulse, shimmer, radar sweep, wave ripple, floating cards, page transitions, chart draw-in
 
 ## 0.1.0
 

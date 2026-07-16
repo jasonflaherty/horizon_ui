@@ -234,6 +234,106 @@ class HorizonGalleryApp extends StatelessWidget {
             ),
           ],
         ),
+        WidgetbookFolder(
+          name: 'Charts',
+          children: [
+            WidgetbookComponent(
+              name: 'HorizonAreaChart',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => const Padding(
+                    padding: EdgeInsets.all(24),
+                    child: HorizonAreaChart(
+                      points: [
+                        HorizonChartPoint(label: 'a', value: 2),
+                        HorizonChartPoint(label: 'b', value: 5),
+                        HorizonChartPoint(label: 'c', value: 3),
+                        HorizonChartPoint(label: 'd', value: 6),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'HorizonBarChart',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => const Padding(
+                    padding: EdgeInsets.all(24),
+                    child: SizedBox(
+                      height: 160,
+                      child: HorizonBarChart(
+                        points: [
+                          HorizonChartPoint(label: 'M', value: 4),
+                          HorizonChartPoint(label: 'T', value: 7),
+                          HorizonChartPoint(label: 'W', value: 5),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        WidgetbookFolder(
+          name: 'Gauges',
+          children: [
+            WidgetbookComponent(
+              name: 'HorizonCircularGauge',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Score',
+                  builder: (context) => const Center(
+                    child: HorizonCircularGauge(value: 92, label: 'Score'),
+                  ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'HorizonCompass',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Heading',
+                  builder: (context) =>
+                      const Center(child: HorizonCompass(headingDegrees: 35)),
+                ),
+              ],
+            ),
+          ],
+        ),
+        WidgetbookFolder(
+          name: 'Motion',
+          children: [
+            WidgetbookComponent(
+              name: 'RadarSweep',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => const Center(child: RadarSweep()),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'AnimatedNumber',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Wave height',
+                  builder: (context) => const Center(
+                    child: AnimatedNumber(
+                      value: 8.4,
+                      decimalPlaces: 1,
+                      suffix: ' ft',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }

@@ -1,8 +1,19 @@
 /// Horizon UI — Flutter design system for data-rich outdoor applications.
 library;
 
+export 'src/animations/animated_number.dart';
+export 'src/animations/floating_transitions.dart';
 export 'src/animations/horizon_motion.dart';
+export 'src/animations/pulse_shimmer.dart';
+export 'src/animations/radar_wave.dart';
+export 'src/charts/bar_chart.dart';
+export 'src/charts/chart_data.dart';
+export 'src/charts/line_area_chart.dart';
+export 'src/charts/radar_chart.dart';
+export 'src/charts/tide_timeline.dart';
 export 'src/extensions/horizon_context.dart';
+export 'src/gauges/gauges.dart';
+export 'src/navigation/navigation.dart';
 export 'src/theme/horizon_theme_extension.dart';
 export 'src/theme/horizon_themes.dart';
 export 'src/tokens/color_tokens.dart';
