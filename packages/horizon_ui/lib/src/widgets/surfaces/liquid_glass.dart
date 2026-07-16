@@ -184,11 +184,17 @@ class _RefractionSheen extends StatefulWidget {
 class _RefractionSheenState extends State<_RefractionSheen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
+  late final Animation<double> _sheen;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
+    // Sine ease softens acceleration and the L↔R turnaround.
+    _sheen = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOutSine,
+    );
   }
 
   @override
@@ -217,21 +223,23 @@ class _RefractionSheenState extends State<_RefractionSheen>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _controller,
+      animation: _sheen,
       builder: (BuildContext context, Widget? child) {
-        final double t = _controller.value;
+        final double t = _sheen.value;
         return DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment(-1 + t * 2, -1),
-              end: Alignment(t * 2, 1),
+              begin: Alignment(-1.15 + t * 2.3, -0.85),
+              end: Alignment(-0.15 + t * 2.3, 0.85),
               colors: [
                 Colors.white.withValues(alpha: 0),
-                Colors.white.withValues(alpha: 0.16 * widget.strength * 4),
+                Colors.white.withValues(alpha: 0.05 * widget.strength * 4),
+                Colors.white.withValues(alpha: 0.14 * widget.strength * 4),
                 glowMid(widget.strength),
+                Colors.white.withValues(alpha: 0.05 * widget.strength * 4),
                 Colors.white.withValues(alpha: 0),
               ],
-              stops: const [0, 0.4, 0.55, 1],
+              stops: const [0, 0.28, 0.42, 0.5, 0.58, 1],
             ),
           ),
         );
@@ -240,7 +248,7 @@ class _RefractionSheenState extends State<_RefractionSheen>
   }
 
   static Color glowMid(double strength) =>
-      Colors.white.withValues(alpha: 0.08 * strength * 3);
+      Colors.white.withValues(alpha: 0.07 * strength * 3);
 }
 
 /// Optional soft grain overlay for anti-perfect surfaces.
