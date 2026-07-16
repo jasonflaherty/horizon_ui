@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -95,6 +96,9 @@ class HorizonGlassButton extends StatelessWidget {
     final HorizonTokens tokens = context.horizon;
     final bool enabled = onPressed != null && !loading;
     final BorderRadius radius = BorderRadius.circular(tokens.radius.md);
+    final double rim = tokens.elevation.rimIntensity;
+    final double edge = tokens.elevation.edgeWidth;
+    final Color glow = tokens.colors.glow;
 
     return Semantics(
       button: true,
@@ -105,37 +109,56 @@ class HorizonGlassButton extends StatelessWidget {
           minHeight: size.height,
           minWidth: expanded ? double.infinity : 0,
         ),
-        child: ClipRRect(
-          borderRadius: radius,
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: tokens.elevation.glassBlur / 2,
-              sigmaY: tokens.elevation.glassBlur / 2,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: radius,
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.white.withValues(alpha: 0.35 + rim * 0.35),
+                glow.withValues(alpha: 0.15 + rim * 0.25),
+                Colors.black.withValues(alpha: 0.2),
+              ],
             ),
-            child: Material(
-              color: tokens.colors.surface.withValues(
-                alpha: tokens.elevation.glassOpacity,
-              ),
-              child: InkWell(
-                onTap: enabled ? onPressed : null,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: radius,
-                    border: Border.all(
-                      color: tokens.colors.border.withValues(alpha: 0.7),
+            boxShadow: rim > 0.5
+                ? [
+                    BoxShadow(
+                      color: glow.withValues(alpha: 0.2),
+                      blurRadius: 16,
                     ),
+                  ]
+                : null,
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(edge * 0.75),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(
+                math.max(0, tokens.radius.md - edge),
+              ),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: tokens.elevation.glassBlur / 2,
+                  sigmaY: tokens.elevation.glassBlur / 2,
+                ),
+                child: Material(
+                  color: tokens.colors.surface.withValues(
+                    alpha: tokens.elevation.glassOpacity,
                   ),
-                  child: Padding(
-                    padding: size.padding,
-                    child: Center(
-                      child: _ButtonLabel(
-                        label: label,
-                        icon: icon,
-                        size: size,
-                        loading: loading,
-                        foreground: enabled
-                            ? tokens.colors.onSurface
-                            : tokens.colors.onSurface.withValues(alpha: 0.38),
+                  child: InkWell(
+                    onTap: enabled ? onPressed : null,
+                    child: Padding(
+                      padding: size.padding,
+                      child: Center(
+                        child: _ButtonLabel(
+                          label: label,
+                          icon: icon,
+                          size: size,
+                          loading: loading,
+                          foreground: enabled
+                              ? tokens.colors.onSurface
+                              : tokens.colors.onSurface.withValues(alpha: 0.38),
+                        ),
                       ),
                     ),
                   ),

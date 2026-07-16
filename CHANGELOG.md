@@ -1,3 +1,9 @@
+## 0.4.1
+
+### Changed
+
+- Luxury Coastal and Cyber: deeper liquid-glass blur, optical rim lighting, translucent surfaces
+
 ## 0.4.0
 
 ### Added

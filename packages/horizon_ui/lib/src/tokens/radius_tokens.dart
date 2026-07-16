@@ -21,6 +21,16 @@ class HorizonRadiusTokens {
 
   static const HorizonRadiusTokens standard = HorizonRadiusTokens();
 
+  /// Softer, larger corners for optical / liquid glass themes.
+  static const HorizonRadiusTokens optical = HorizonRadiusTokens(
+    sm: 10,
+    md: 14,
+    lg: 20,
+    xl: 26,
+    xxl: 34,
+    pill: 44,
+  );
+
   HorizonRadiusTokens lerp(HorizonRadiusTokens other, double t) {
     double lerpDouble(double a, double b) => a + (b - a) * t;
     return HorizonRadiusTokens(

@@ -28,6 +28,18 @@ void main() {
           .extension<HorizonThemeExtension>()!;
       expect(ext.tokens.typography.display.fontSize, 42);
       expect(ext.tokens.elevation.glassBlur, greaterThan(16));
+      expect(ext.tokens.elevation.rimIntensity, greaterThan(0.7));
+      expect(ext.tokens.radius.lg, greaterThan(16));
+    });
+
+    test('cyber dark uses neon-rimmed liquid glass elevation', () {
+      final ThemeData theme = HorizonThemes.cyberDark();
+      final HorizonThemeExtension ext = theme
+          .extension<HorizonThemeExtension>()!;
+      expect(ext.tokens.colors.glow, const Color(0xFF00E5FF));
+      expect(ext.tokens.elevation.glassBlur, greaterThan(24));
+      expect(ext.tokens.elevation.glassOpacity, lessThan(0.4));
+      expect(ext.tokens.elevation.rimIntensity, 1);
     });
 
     test('motion tokens match design scale', () {

@@ -1,3 +1,8 @@
+## 0.4.1
+
+- Deepen Luxury Coastal and Cyber liquid-glass look: stronger blur/rim lighting,
+  translucent surfaces, optical corner radii, richer glow depth on `LiquidGlass`.
+
 ## 0.4.0
 
 - Horizon Next visual language: `HorizonThemes.calm()`, liquid-glass elevation tokens, `LiquidGlass` / upgraded `GlassCard`.

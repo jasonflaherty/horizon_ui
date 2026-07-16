@@ -97,13 +97,13 @@ abstract final class HorizonThemes {
       onWarning: Color(0xFF1A1208),
       danger: Color(0xFFB5453A),
       onDanger: Color(0xFFFFF8F6),
-      surface: Color(0xE6F2F8FA),
+      surface: Color(0xB8F4FBFD),
       onSurface: Color(0xFF0A2A32),
-      background: Color(0xFFE8F4F7),
+      background: Color(0xFFDCEEF4),
       onBackground: Color(0xFF0A2A32),
-      border: Color(0x6690B8C4),
+      border: Color(0x55A8D0DC),
       glow: Color(0xFF7EC8D4),
-      surfaceVariant: Color(0xCCDAEBEF),
+      surfaceVariant: Color(0x99DAEBEF),
       onSurfaceVariant: Color(0xFF3A5A64),
     ),
     typography: HorizonTypographyTokens.editorial(
@@ -111,15 +111,16 @@ abstract final class HorizonThemes {
     ),
     elevation: HorizonElevationTokens.liquid(
       shadowColor: const Color(0xFF0A2A32),
-      tint: const Color(0x66A8D8E8),
+      tint: const Color(0x88C8ECF5),
     ),
+    radius: HorizonRadiusTokens.optical,
   );
 
   static ThemeData luxuryCoastalDark() => _build(
     id: 'luxury-coastal-dark',
     brightness: Brightness.dark,
     colors: const HorizonColorTokens(
-      primary: Color(0xFF7EC8D4),
+      primary: Color(0xFF8ED4E0),
       onPrimary: Color(0xFF00363E),
       secondary: Color(0xFF9BB8C4),
       onSecondary: Color(0xFF0A2A32),
@@ -131,13 +132,13 @@ abstract final class HorizonThemes {
       onWarning: Color(0xFF3A2800),
       danger: Color(0xFFE08A80),
       onDanger: Color(0xFF3F0A08),
-      surface: Color(0xCC0F2A32),
+      surface: Color(0x73152630),
       onSurface: Color(0xFFE8F4F7),
-      background: Color(0xFF071820),
+      background: Color(0xFF030D14),
       onBackground: Color(0xFFE8F4F7),
-      border: Color(0x664A7A88),
+      border: Color(0x445A8A98),
       glow: Color(0xFF7EC8D4),
-      surfaceVariant: Color(0x991A3A44),
+      surfaceVariant: Color(0x591A3A44),
       onSurfaceVariant: Color(0xFFB0C8D0),
     ),
     typography: HorizonTypographyTokens.editorial(
@@ -145,8 +146,9 @@ abstract final class HorizonThemes {
     ),
     elevation: HorizonElevationTokens.liquid(
       shadowColor: Colors.black,
-      tint: const Color(0x447EC8D4),
+      tint: const Color(0x667EC8D4),
     ),
+    radius: HorizonRadiusTokens.optical,
   );
 
   static ThemeData cyber({Brightness brightness = Brightness.dark}) {
@@ -170,17 +172,18 @@ abstract final class HorizonThemes {
       onWarning: Color(0xFF2A1A00),
       danger: Color(0xFFFF4D6A),
       onDanger: Color(0xFF2A0010),
-      surface: Color(0xFF0A1218),
+      surface: Color(0x66101828),
       onSurface: Color(0xFFE6F9FF),
-      background: Color(0xFF05080C),
+      background: Color(0xFF020508),
       onBackground: Color(0xFFE6F9FF),
-      border: Color(0xFF1A3A44),
+      border: Color(0x4400E5FF),
       glow: Color(0xFF00E5FF),
-      surfaceVariant: Color(0xFF101C24),
+      surfaceVariant: Color(0x4D142030),
       onSurfaceVariant: Color(0xFF9AD4E0),
     ),
     typography: HorizonTypographyTokens.hud(color: const Color(0xFFE6F9FF)),
     elevation: HorizonElevationTokens.cyber(glow: const Color(0xFF00E5FF)),
+    radius: HorizonRadiusTokens.optical,
   );
 
   static ThemeData cyberLight() => _build(
@@ -199,17 +202,18 @@ abstract final class HorizonThemes {
       onWarning: Color(0xFFFFFFFF),
       danger: Color(0xFFC41E3A),
       onDanger: Color(0xFFFFFFFF),
-      surface: Color(0xFFF0FAFC),
+      surface: Color(0xB8F2FBFD),
       onSurface: Color(0xFF051018),
-      background: Color(0xFFE6F4F7),
+      background: Color(0xFFD8EEF4),
       onBackground: Color(0xFF051018),
-      border: Color(0xFF9AC8D0),
+      border: Color(0x6600B8CC),
       glow: Color(0xFF00B8CC),
-      surfaceVariant: Color(0xFFD4EEF2),
+      surfaceVariant: Color(0x99D4EEF2),
       onSurfaceVariant: Color(0xFF1A3A44),
     ),
     typography: HorizonTypographyTokens.hud(color: const Color(0xFF051018)),
     elevation: HorizonElevationTokens.cyber(glow: const Color(0xFF00B8CC)),
+    radius: HorizonRadiusTokens.optical,
   );
 
   static ThemeData alpine({Brightness brightness = Brightness.light}) {
@@ -562,12 +566,13 @@ abstract final class HorizonThemes {
     HorizonElevationTokens? elevation,
     HorizonSpacingTokens? spacing,
     HorizonMotionTokens? motion,
+    HorizonRadiusTokens? radius,
   }) {
     final HorizonTokens tokens = HorizonTokens(
       colors: colors,
       typography: typography,
       spacing: spacing ?? HorizonSpacingTokens.standard,
-      radius: HorizonRadiusTokens.standard,
+      radius: radius ?? HorizonRadiusTokens.standard,
       elevation:
           elevation ??
           HorizonElevationTokens.standard(

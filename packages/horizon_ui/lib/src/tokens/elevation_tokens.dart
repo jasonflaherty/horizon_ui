@@ -13,6 +13,7 @@ class HorizonElevationTokens {
     this.specular = 0.35,
     this.tint = const Color(0x66FFFFFF),
     this.edgeWidth = 1.25,
+    this.rimIntensity = 0.35,
     this.imperfectShadowOffset = const Offset(0.6, 2.4),
   });
 
@@ -34,6 +35,9 @@ class HorizonElevationTokens {
   /// Specular edge stroke width.
   final double edgeWidth;
 
+  /// Optical rim lighting strength for gradient glass edges (0–1).
+  final double rimIntensity;
+
   /// Slightly imperfect shadow offset for anti-perfect UI.
   final Offset imperfectShadowOffset;
 
@@ -44,6 +48,7 @@ class HorizonElevationTokens {
       refraction: 0.06,
       specular: 0.28,
       tint: const Color(0x55FFFFFF),
+      rimIntensity: 0.3,
       flat: const [],
       raised: [
         BoxShadow(
@@ -67,56 +72,78 @@ class HorizonElevationTokens {
     );
   }
 
+  /// Deep frosted optical glass — Luxury Coastal and similar.
   factory HorizonElevationTokens.liquid({
     Color shadowColor = Colors.black,
     Color tint = const Color(0x66B8E0F0),
   }) {
     return HorizonElevationTokens(
-      glassBlur: 28,
-      glassOpacity: 0.42,
-      refraction: 0.16,
-      specular: 0.55,
+      glassBlur: 40,
+      glassOpacity: 0.28,
+      refraction: 0.22,
+      specular: 0.78,
       tint: tint,
-      edgeWidth: 1.6,
-      imperfectShadowOffset: const Offset(1.1, 3.2),
+      edgeWidth: 1.8,
+      rimIntensity: 0.9,
+      imperfectShadowOffset: const Offset(1.4, 4.2),
       flat: const [],
       raised: [
         BoxShadow(
-          color: shadowColor.withValues(alpha: 0.1),
-          blurRadius: 14,
-          offset: const Offset(0.8, 3),
+          color: shadowColor.withValues(alpha: 0.14),
+          blurRadius: 18,
+          offset: const Offset(1, 4),
+        ),
+        BoxShadow(
+          color: shadowColor.withValues(alpha: 0.06),
+          blurRadius: 4,
+          offset: const Offset(0.4, 1.2),
         ),
       ],
       floating: [
         BoxShadow(
-          color: shadowColor.withValues(alpha: 0.16),
-          blurRadius: 28,
-          offset: const Offset(1.2, 10),
+          color: shadowColor.withValues(alpha: 0.22),
+          blurRadius: 36,
+          offset: const Offset(1.6, 14),
+        ),
+        BoxShadow(
+          color: shadowColor.withValues(alpha: 0.1),
+          blurRadius: 8,
+          offset: const Offset(0.6, 3),
         ),
       ],
     );
   }
 
+  /// Neon-rimmed liquid glass HUD — Cyber / Aurora-adjacent.
   factory HorizonElevationTokens.cyber({required Color glow}) {
     return HorizonElevationTokens(
-      glassBlur: 12,
-      glassOpacity: 0.35,
-      refraction: 0.02,
-      specular: 0.45,
-      tint: glow.withValues(alpha: 0.12),
-      edgeWidth: 1.5,
+      glassBlur: 36,
+      glassOpacity: 0.22,
+      refraction: 0.26,
+      specular: 0.82,
+      tint: glow.withValues(alpha: 0.2),
+      edgeWidth: 1.55,
+      rimIntensity: 1,
+      imperfectShadowOffset: const Offset(1.6, 4.5),
       flat: const [],
-      raised: [BoxShadow(color: glow.withValues(alpha: 0.25), blurRadius: 12)],
+      raised: [
+        BoxShadow(color: glow.withValues(alpha: 0.28), blurRadius: 18),
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.35),
+          blurRadius: 16,
+          offset: const Offset(0, 6),
+        ),
+      ],
       floating: [
         BoxShadow(
-          color: glow.withValues(alpha: 0.45),
-          blurRadius: 28,
-          spreadRadius: 1,
+          color: glow.withValues(alpha: 0.42),
+          blurRadius: 40,
+          spreadRadius: 0,
         ),
         BoxShadow(
-          color: Colors.black.withValues(alpha: 0.4),
-          blurRadius: 16,
-          offset: const Offset(0, 8),
+          color: Colors.black.withValues(alpha: 0.5),
+          blurRadius: 28,
+          offset: const Offset(0, 12),
         ),
       ],
     );
@@ -130,6 +157,7 @@ class HorizonElevationTokens {
       specular: 0.2,
       tint: const Color(0x44FFFFFF),
       edgeWidth: 1,
+      rimIntensity: 0.2,
       imperfectShadowOffset: const Offset(0.4, 2),
       flat: const [],
       raised: [
@@ -157,6 +185,7 @@ class HorizonElevationTokens {
       specular: specular + (other.specular - specular) * t,
       tint: Color.lerp(tint, other.tint, t)!,
       edgeWidth: edgeWidth + (other.edgeWidth - edgeWidth) * t,
+      rimIntensity: rimIntensity + (other.rimIntensity - rimIntensity) * t,
       imperfectShadowOffset: Offset.lerp(
         imperfectShadowOffset,
         other.imperfectShadowOffset,

@@ -7,7 +7,7 @@ import '../../animations/horizon_motion.dart';
 import '../../extensions/horizon_context.dart';
 import '../../tokens/tokens.dart';
 
-/// Liquid glass surface with refraction tint, specular edge, and optical depth.
+/// Liquid glass surface with refraction tint, specular rim, and optical depth.
 class LiquidGlass extends StatelessWidget {
   const LiquidGlass({
     super.key,
@@ -35,62 +35,122 @@ class LiquidGlass extends StatelessWidget {
         padding ?? EdgeInsets.all(tokens.spacing.x4);
     final bool animate =
         enableRefraction && HorizonMotion.shouldAnimate(context);
+    final double rim = tokens.elevation.rimIntensity;
+    final double specular = tokens.elevation.specular;
+    final double edge = tokens.elevation.edgeWidth;
+    final Color glow = tokens.colors.glow;
 
-    Widget content = ClipRRect(
-      borderRadius: radius,
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: tokens.elevation.glassBlur,
-          sigmaY: tokens.elevation.glassBlur,
+    final List<BoxShadow> depthShadows = [
+      ...tokens.elevation.raised,
+      BoxShadow(
+        color: Colors.black.withValues(alpha: 0.1 + rim * 0.12),
+        blurRadius: 14 + rim * 18,
+        offset: tokens.elevation.imperfectShadowOffset,
+      ),
+      if (rim > 0.4)
+        BoxShadow(
+          color: glow.withValues(alpha: 0.12 + rim * 0.18),
+          blurRadius: 22 + rim * 20,
+          spreadRadius: -2,
         ),
-        child: Stack(
-          children: [
-            DecoratedBox(
-              decoration: BoxDecoration(
-                color: tokens.colors.surface.withValues(
-                  alpha: tokens.elevation.glassOpacity,
-                ),
-                borderRadius: radius,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    tokens.elevation.tint,
-                    tokens.elevation.tint.withValues(alpha: 0.05),
-                    tokens.colors.surface.withValues(
-                      alpha: tokens.elevation.glassOpacity * 0.85,
+    ];
+
+    final BorderRadius innerRadius = BorderRadius.circular(
+      math.max(0, radius.topLeft.x - edge),
+    );
+
+    Widget content = DecoratedBox(
+      decoration: BoxDecoration(borderRadius: radius, boxShadow: depthShadows),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: radius,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.lerp(
+                Colors.white,
+                glow,
+                rim * 0.35,
+              )!.withValues(alpha: 0.25 + specular * 0.55),
+              glow.withValues(alpha: 0.08 + rim * 0.22),
+              Colors.white.withValues(alpha: 0.06 + specular * 0.12),
+              Colors.black.withValues(alpha: 0.18 + rim * 0.2),
+            ],
+            stops: const [0, 0.28, 0.62, 1],
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(edge),
+          child: ClipRRect(
+            borderRadius: innerRadius,
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: tokens.elevation.glassBlur,
+                sigmaY: tokens.elevation.glassBlur,
+              ),
+              child: Stack(
+                children: [
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: innerRadius,
+                      color: tokens.colors.surface.withValues(
+                        alpha: tokens.elevation.glassOpacity,
+                      ),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color.lerp(
+                            tokens.elevation.tint,
+                            Colors.white,
+                            0.25 * specular,
+                          )!,
+                          tokens.elevation.tint.withValues(alpha: 0.08),
+                          tokens.colors.surface.withValues(
+                            alpha: tokens.elevation.glassOpacity * 0.9,
+                          ),
+                          glow.withValues(alpha: 0.04 + rim * 0.06),
+                        ],
+                        stops: const [0, 0.35, 0.75, 1],
+                      ),
                     ),
-                  ],
-                  stops: const [0, 0.45, 1],
-                ),
-                border: Border.all(
-                  width: tokens.elevation.edgeWidth,
-                  color: Color.lerp(
-                    tokens.colors.border,
-                    Colors.white,
-                    tokens.elevation.specular,
-                  )!.withValues(alpha: 0.55),
-                ),
-                boxShadow: [
-                  ...tokens.elevation.raised,
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.08),
-                    blurRadius: 12,
-                    offset: tokens.elevation.imperfectShadowOffset,
+                    child: Padding(padding: resolvedPadding, child: child),
                   ),
+                  // Inner top-edge catch light.
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    height: 1.5,
+                    child: IgnorePointer(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.white.withValues(alpha: 0),
+                              Colors.white.withValues(
+                                alpha: 0.35 + specular * 0.4,
+                              ),
+                              Colors.white.withValues(alpha: 0),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  if (animate)
+                    Positioned.fill(
+                      child: IgnorePointer(
+                        child: _RefractionSheen(
+                          strength: tokens.elevation.refraction,
+                        ),
+                      ),
+                    ),
                 ],
               ),
-              child: Padding(padding: resolvedPadding, child: child),
             ),
-            if (animate)
-              Positioned.fill(
-                child: IgnorePointer(
-                  child: _RefractionSheen(
-                    strength: tokens.elevation.refraction,
-                  ),
-                ),
-              ),
-          ],
+          ),
         ),
       ),
     );
@@ -163,15 +223,20 @@ class _RefractionSheenState extends State<_RefractionSheen>
               end: Alignment(t * 2, 1),
               colors: [
                 Colors.white.withValues(alpha: 0),
-                Colors.white.withValues(alpha: 0.12 * widget.strength * 4),
+                Colors.white.withValues(alpha: 0.16 * widget.strength * 4),
+                glowMid(widget.strength),
                 Colors.white.withValues(alpha: 0),
               ],
+              stops: const [0, 0.4, 0.55, 1],
             ),
           ),
         );
       },
     );
   }
+
+  static Color glowMid(double strength) =>
+      Colors.white.withValues(alpha: 0.08 * strength * 3);
 }
 
 /// Optional soft grain overlay for anti-perfect surfaces.
