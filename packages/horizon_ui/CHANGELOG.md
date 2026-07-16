@@ -5,6 +5,8 @@
 - Calmer sine-eased sheen (~30% slower); tunable via `enableRefraction`,
   `sheenStrength`, `sheenSpeed`, and `sheenDuration` on `LiquidGlass` / `GlassCard`.
 - Package README rewritten for git / pub consumers.
+- Accessible surfaces: opaque theme surfaces for AA text contrast; glass alpha via
+  elevation; fixed light-theme semantic color pairs below 4.5:1.
 
 ## 0.4.0
 

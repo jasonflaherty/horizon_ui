@@ -77,6 +77,10 @@ GlassCard(enableRefraction: false, child: ...)
 
 Sheen also respects system reduced-motion (`HorizonMotion.shouldAnimate`).
 
+Theme `surface` / `background` colors are opaque so body text meets **WCAG AA (≥ 4.5:1)**
+against backgrounds; frosted transparency comes from elevation `glassOpacity` on
+`LiquidGlass`, not from translucent surface tokens.
+
 ## Components (highlights)
 
 - **Buttons / cards:** Filled, Glass, Glow, FAB; Glass, Hero, Metric, Forecast, Alert

@@ -4,11 +4,14 @@
 
 - Luxury Coastal and Cyber: deeper liquid-glass blur, optical rim lighting, translucent surfaces
 - Calmer, sine-eased refraction sheen (~30% slower)
+- Theme surfaces kept opaque for WCAG AA text contrast; glass transparency via elevation only
+- Fixed light-theme semantic fills (warning/accent/success/secondary) below 4.5:1
 
 ### Added
 
 - `LiquidGlass` / `GlassCard` sheen controls: `enableRefraction`, `sheenStrength`, `sheenSpeed`, `sheenDuration`
 - Standalone package README suitable for pub.dev / git consumers
+- Contrast regression test for all themes (WCAG AA 4.5:1)
 
 ## 0.4.0
 
