@@ -1,0 +1,32 @@
+name: horizon_ui
+description: >
+  An open-source Flutter design system for data-rich outdoor applications —
+  surf, snow, weather, hiking, marine, hunting, aviation, and fishing.
+version: 0.1.0
+homepage: https://github.com/horizon-ui/horizon_ui
+repository: https://github.com/horizon-ui/horizon_ui
+issue_tracker: https://github.com/horizon-ui/horizon_ui/issues
+topics:
+  - flutter
+  - design-system
+  - ui
+  - outdoor
+  - weather
+
+environment:
+  sdk: ^3.10.0
+  flutter: ">=3.32.0"
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

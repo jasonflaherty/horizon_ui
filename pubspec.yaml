@@ -1,0 +1,13 @@
+name: horizon_ui_workspace
+publish_to: none
+
+environment:
+  sdk: ^3.10.0
+
+workspace:
+  - packages/horizon_ui
+  - examples/gallery
+  - examples/showcase
+
+dev_dependencies:
+  melos: ^7.0.0

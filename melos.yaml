@@ -1,0 +1,39 @@
+name: horizon_ui
+repository: https://github.com/horizon-ui/horizon_ui
+
+packages:
+  - packages/**
+  - examples/**
+
+command:
+  bootstrap:
+    environment:
+      sdk: ^3.10.0
+
+scripts:
+  analyze:
+    run: dart analyze --fatal-infos
+    exec:
+      concurrency: 1
+
+  test:
+    run: flutter test
+    packageFilters:
+      flutter: true
+    exec:
+      concurrency: 1
+
+  format:
+    run: dart format --set-exit-if-changed .
+    exec:
+      concurrency: 1
+
+  format:fix:
+    run: dart format .
+    exec:
+      concurrency: 1
+
+  pub_get:
+    run: flutter pub get
+    exec:
+      concurrency: 1
